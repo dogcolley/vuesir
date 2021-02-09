@@ -43,6 +43,9 @@ $breakpoint-tablet-vt : 768px;
 $breakpoint-tablet-hz : 1024px;
 $breakpoint-desktop   : 1024px;
 
+$set-ht   : 28px;
+$set-ht-b : 26px;
+
 /* #3 maxin */
 @mixin mb{
     @media (max-width: #{$breakpoint-tablet-vt - 1px}) {
@@ -154,6 +157,7 @@ $breakpoint-desktop   : 1024px;
         &hd{overflow: hidden;}
         &at{overflow: auto;}
     }
+    
 }
 
 /* #4 common */
@@ -180,6 +184,20 @@ body,html  {
             @extend .U_btn01;
             border: 1px solid #000
         }
+        
+        &03{
+            border-radius: 0!important;
+            box-shadow:  0 0 0 0 !important;
+            box-sizing: border-box;
+            border:1px solid #d9d9d9
+        }
+
+    }
+
+    &select01{
+        height:28px;
+        line-height:28px;
+        > .v-input__control{min-height: 28px !important;}
     }
 
     &ft_{
@@ -232,14 +250,6 @@ body,html  {
             @extend .U_mg_wd_ct;
             @extend .U_wrap; 
         }
-    }
-    
-    &hd{
-        /*
-        background-color: $color-theme01!important;
-        color:$color-base!important;
-        * {color:$color-base!important};
-        */
     }
 
     &gd_bg{
@@ -316,3 +326,8 @@ body,html  {
 }
 
 .theme--light.v-application{background:none!important}
+.v-text-field__details{display:none !important}
+.v-input__slot{margin-bottom: 0!important}
+.v-text-field.v-text-field--solo .v-input__control{
+    min-height: 10px!important;
+}

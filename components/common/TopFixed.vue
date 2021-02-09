@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-        <v-row>
+    <v-container class="U_Top">
+        <v-row class="wrap">
             <v-col  md="6" sm="6" cols="12">
                 <v-row>
                     <v-col cols="2" >
@@ -8,6 +8,7 @@
                             label="Outlined style"
                             dense
                             outlined
+                            height="28px"
                         ></v-select>
                     </v-col>
                     <v-col cols="8">
@@ -16,23 +17,24 @@
                         placeholder="Placeholder"
                         outlined
                         dense
+                        height="28px"
                         ></v-text-field>
                     </v-col>
                     <v-col cols="1" >
-                        <v-btn>
-                            <v-icon>
+                        <v-btn small >
+                            <v-icon small >
                                 mdi-magnify
                             </v-icon>
                         </v-btn>
                     </v-col>
                     
-                    <v-col cols="1" >
-                        <v-btn>
+                    <v-col cols="1">
+                        <v-btn small :rounded="false">
                             상세
-                            <v-icon>
+                            <v-icon small>
                                 mdi-chevron-down
                             </v-icon>
-                            <v-icon>
+                            <v-icon v-if="false" small >
                                 mdi-chevron-up
                             </v-icon>
                         </v-btn>
@@ -53,13 +55,13 @@
                     label="John"
                     value="John"
                  ></v-checkbox>
-                 <v-btn>삭제</v-btn>
-                 <v-btn>수정</v-btn>
+                 <v-btn small>삭제</v-btn>
+                 <v-btn small>수정</v-btn>
             </v-col>
             <v-col  md="6" sm="6" cols="12">
-                 <v-btn>삭제</v-btn>
-                 <v-btn>수정</v-btn>       
-                 <v-btn>수정</v-btn>
+                 <v-btn small>삭제</v-btn>
+                 <v-btn small>수정</v-btn>       
+                 <v-btn small>수정</v-btn>
             </v-col>
         </v-row>
 
@@ -82,6 +84,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+    .U_Top{
+        .wrap{background: #fff;}
+        .v-btn{
+            //@extend .U_btn03;
+        }
+    }
 </style>
