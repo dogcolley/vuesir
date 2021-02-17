@@ -46,9 +46,7 @@
     <!--메인 -->
     <v-main>
       <Banner v-if="$store.state.login " height="100px" />
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-main>
 
   </v-app>
@@ -89,48 +87,3 @@ export default {
   }
 }
 </script>
-
-
-<style lang="scss">
-.container{max-width:100% !important;min-width: 310px !important;}
-.v-navigation-drawer{
-  border-right: 1px solid #ddd;
-  .v-list{padding: 0;}
-}
-.v-sheet.v-app-bar.v-toolbar:not(.v-sheet--outlined){box-shadow: none;}
-
-/* gnb setting */
-.U-dep1{position:relative;width:100%}
-.U-dep2{
-  .btn{position:absolute;left:185px;top:0;z-index:99;}
-  .v-list{display:none}
-  .theme--light.v-btn.v-btn--has-bg{background: none!important;box-shadow:0 0 0}
-
-}
-.v-list-item--active+.U-dep2 , .U-dep1-on .U-dep2{
-  .v-list{display:block}
-  .btn{transform: rotate(180deg);}
-}
-.U-dep2 .v-list-item__content{padding-left:70px}
-
-/* hd titile */
-.logo_tit{
-  @extend .U_ft_sz04;
-  font-weight: 500;
-}
-
-/* hd gb */
-.U_hd {
-  @extend .U_gd_bg01;
-  * {color:#fff}
-}
-
-/* nav */
-.U_gnb{
-  //@extend .U_gd_bg02;
-  border: 0!important;
-  background: $color-frame!important;
-  * {color:#fff!important}
-}
-
-</style>

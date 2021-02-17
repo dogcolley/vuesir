@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
     <v-row>
       <v-col cols="12" lg="6" md="12" sm="12">
         <v-row>
@@ -120,7 +120,7 @@
         </v-row>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -553,7 +553,6 @@ export default {
 
 <style lang="scss" scoped>
 /* 영업그룹/mkt/md */
-
 .v-subheader{
   font-weight: bold;
   @extend .U_ft_sz05;

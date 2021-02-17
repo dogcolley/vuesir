@@ -1,5 +1,5 @@
 <template>
-    <div style="position:relative">
+    <v-container class="U_bnr">
         <div v-if="!hide">
             <v-carousel v-model="model" :height="height ? height : '100px'" hide-delimiters>
                 <v-carousel-item
@@ -24,13 +24,13 @@
 
         <button
             @click="hide = !hide"
-            style="position:absolute;right:10px;top:0;width:30px;height:30px;background:#273c4d !important;color:#fff"
+            class="btn01"
         >
             <v-icon v-if="hide" small style="color:#fff">
                 mdi-bulletin-board
             </v-icon>
 
-             <v-icon v-if="!hide"  small style="color:#fff">
+            <v-icon v-if="!hide"  small style="color:#fff">
                 mdi-close
             </v-icon>
         </button>
@@ -38,7 +38,7 @@
         <v-btn 
             x-small
             @click="ckHide()"
-            style="position:absolute;bottom:10px;right:10px;background:rgba(255,255,255,0.3);color:#fff">
+            class="btn02">
             24시간 숨기기
             <v-icon
                 x-small
@@ -47,8 +47,7 @@
                 mdi-close
             </v-icon>
         </v-btn> 
-
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -81,6 +80,32 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.U_bnr{
+    padding:0;
+    position: relative;
+
+
+    .btn01{
+        z-index:4;
+        position:absolute;
+        right:10px;
+        top:0;
+        width:30px;
+        height:30px;
+        background:$color-theme04!important;
+        color:$color-base
+    }
+    
+    .btn02{
+        position:absolute;
+        bottom:10px;
+        left:10px;
+        background:$color-theme04!important;
+        color:$color-base
+    }
+
+
+}
 
 </style>

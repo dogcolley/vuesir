@@ -14,10 +14,12 @@ $color08 : #d4d4d4;
 
 
 $color-base    : #fff;
+$color-base2   : #f9f9f9;
 $color-frame   : #273c4d;
 $color-out     : #000;
 $color-mask    : rgba(0,0,0,0.8);
 $color-mask2   : rgba(255,255,255,0.8);
+$color-border  : #d9d9d9;
 
 $color-theme01 : #7C54FF;
 $color-theme02 : #4D52E8; 
@@ -32,8 +34,7 @@ $color-complementary03 : #B38720;
 $color-complementary04 : #9C6614; 
 $color-complementary05 : #FFB87A;
 
-
-    
+   
 
 $breakpoint-mobile-sm : 320px;
 $breakpoint-mobile    : 330px;
@@ -42,6 +43,12 @@ $breakpoint-mobile-lz : 568px;
 $breakpoint-tablet-vt : 768px; 
 $breakpoint-tablet-hz : 1024px;
 $breakpoint-desktop   : 1024px;
+
+$set-ht   : 28px;
+$set-ht-b : 26px;
+
+$in-h     : 28px;
+$in-ho    : 30px;
 
 /* #3 maxin */
 @mixin mb{
@@ -154,11 +161,12 @@ $breakpoint-desktop   : 1024px;
         &hd{overflow: hidden;}
         &at{overflow: auto;}
     }
+    
 }
 
 /* #4 common */
 body,html  {
-    background: #f9f9f9;
+    background: $color-base2;
     $body-ft : 15px,14px,14px,12px,12px,11px;
     font-family:'Noto Sans KR', 'Spoqa Han Sans' !important;    
     @include user-font-maker01($body-ft);
@@ -166,21 +174,6 @@ body,html  {
 
 
 .U_{
-    &btn{
-        &01{
-            background:#f9f9f9; /*임시 컬러*/
-            width:100%;
-            padding:15px 0;
-            border-radius: 1000px;
-            font-weight: 700;
-            line-height: 1;
-        }
-        &02{
-            padding:13px 0;
-            @extend .U_btn01;
-            border: 1px solid #000
-        }
-    }
 
     &ft_{
         &fm01{font-family: 'Noto Sans KR'!important;}
@@ -193,10 +186,81 @@ body,html  {
         &sz05{font-size:1.0rem} /* md-sm */
         &sz06{font-size:0.9rem} /* sm */
         &sz07{font-size:0.8rem} /* sm-ex */
+        &sz08{font-size:0.7rem} /* sm-ex */
+        &sz09{font-size:0.6rem} /* sm-ex */
 
         &lt{text-align: left;}
         &rt{text-align: right;}
         &ct{text-align: center;}
+    }
+
+    &btn{
+        &01{
+            background:$color-base2; /*임시 컬러*/
+            width:100%;
+            padding:15px 0;
+            border-radius: 1000px;
+            font-weight: 700;
+            line-height: 1;
+            background-color: $color-base2;
+        }
+        &02{
+            padding:13px 0;
+            @extend .U_btn01;
+            border: 1px solid #000;
+            background-color: $color-base2;
+        }
+        
+        &03{
+            border-radius: 0!important;
+            box-shadow:  0 0 0 0 !important;
+            box-sizing: border-box;
+            border:1px solid $color-border;
+            background-color: $color-base2;
+        }
+
+        &04{
+            width:30px;
+            height:$in-ho;
+            line-height:$in-h;
+            background-color: $color-base2;
+        }
+        
+        &05{
+            padding-left:15px;
+            padding-right:15px;
+            height:$in-ho;
+            background-color: $color-base2;
+        }
+
+
+    }
+
+    &select01{
+        height:28px;
+        line-height:28px;
+        > .v-input__control{min-height: 28px !important;}
+    }
+
+    &select02{
+        height:$in-ho;
+        line-height:$in-ho;
+        padding-left:15px;
+        padding-right:15px;
+        border:1px solid $color-border;
+        background-color: $color-base2;
+        vertical-align: top;
+        @extend .U_ft_sz06;
+    }
+
+    &input01{
+        height:$in-ho;
+        line-height:$in-ho;
+        padding-left:15px;
+        padding-right:15px;
+        border:1px solid $color-border;
+        background-color: $color-base2;
+        @extend .U_ft_sz06;
     }
 
     &mg_wd_ct{margin-left:auto;margin-right:auto}
@@ -233,14 +297,11 @@ body,html  {
             @extend .U_wrap; 
         }
     }
-    
-    &hd{
-        /*
-        background-color: $color-theme01!important;
-        color:$color-base!important;
-        * {color:$color-base!important};
-        */
+
+    &bg{
+        &01{background-color: $color-base;}
     }
+
 
     &gd_bg{
         &01{background-image: linear-gradient( 90deg , $color-theme01 0%, $color-theme02 25%, $color-theme03 100%)!important;}
@@ -253,6 +314,25 @@ body,html  {
 
     &wrap{max-width:1024px}
     &wrap2{max-width:768px}
+
+    &table02{
+        width: 100%;
+        tr > *{padding:5px 10px}
+        tr > *:nth-child(odd){background:red}
+        tr > *:nth-child(even){background:green}
+    }
+    
+    &bd_cate01{
+        @extend .U_clear, .U_ft_sz06;
+        > * {float:left}
+        > dt{
+            padding-right:10px;
+            border-right:1px solid $color-border;
+            margin-right:10px;
+            margin-left:30px;
+        }
+        > dd{ color:$color-complementary04}
+    }
 
     &modal{
         width: 100%;
@@ -309,10 +389,62 @@ body,html  {
     }
 }
 
+/*=========== defaulte Start*/
+
+.container{max-width:100% !important;min-width: 310px !important;}
+.v-navigation-drawer{
+  border-right: 1px solid #ddd;
+  .v-list{padding: 0;}
+}
+.v-sheet.v-app-bar.v-toolbar:not(.v-sheet--outlined){box-shadow: none;}
+
+/* gnb setting */
+.U-dep1{position:relative;width:100%}
+.U-dep2{
+  .btn{position:absolute;left:185px;top:0;z-index:99;}
+  .v-list{display:none}
+  .theme--light.v-btn.v-btn--has-bg{background: none!important;box-shadow:0 0 0}
+
+}
+.v-list-item--active+.U-dep2 , .U-dep1-on .U-dep2{
+  .v-list{display:block}
+  .btn{transform: rotate(180deg);}
+}
+.U-dep2 .v-list-item__content{padding-left:70px}
+
+/* hd titile */
+.logo_tit{
+  @extend .U_ft_sz04;
+  font-weight: 500;
+}
+
+/* hd gb */
+.U_hd {
+  @extend .U_gd_bg01;
+  * {color:#fff}
+}
+
+/* nav */
+.U_gnb{
+  //@extend .U_gd_bg02;
+  border: 0!important;
+  background: $color-frame!important;
+  * {color:#fff!important}
+}
+
+/*=========== defaulte end*/
+
+
 
 /*override vuetify*/
 .v-application--wrap {
     min-height: auto !important;
 }
-
 .theme--light.v-application{background:none!important}
+.v-input-ov01{
+    .v-text-field__details{display:none !important}
+    .v-input__slot{margin-bottom: 0!important}
+    .v-text-field.v-text-field--solo .v-input__control{
+        min-height: 10px!important;
+    }
+}
