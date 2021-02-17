@@ -1,7 +1,15 @@
 export default function ({app, store, redirect, route,query,req,res,localStorage}) {
     if(typeof window == 'undefined'){
-        const cookie = req.headers.cookie.split(';')
+
+        let cookie =  [];
         let Token = ''
+        let basePage;  
+
+        if(req.headers.cookie)
+          cookie = req.headers.cookie.split(';')
+        else 
+          cookie = [];
+        
         for(let i = 0; i < cookie.length;i++){
           let Arr = cookie[i].split('=')
           if(Arr[0].replace(" ","") == 'accessToken'){
@@ -9,7 +17,6 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
           }
         }
   
-        let basePage;  
         if(route.name !== "Login")
           basePage = route.name    
   
