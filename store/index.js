@@ -40,10 +40,11 @@ export default {
             state.$url = data.base_url
             if(data.state)
               state.login = true
-            else{
-              
+            else if(typeof document !== undefined){
               state.login = false
               document.cookie = "accessToken="
+            }else{
+              state.login = false
             }
         },
         loadingStart(state,text){
@@ -87,7 +88,6 @@ export default {
       },
       actions: {
         async TESTING(sto){
-            //await sto.commit('testConsole');
             sto.commit('sms/test_sms_add')
         },
         async LOGIN(sto,data){

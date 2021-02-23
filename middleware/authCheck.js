@@ -33,7 +33,7 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
               return redirect(`/`)
           }
         }
-      }else{
+      }else if (typeof document !== "undefined") {
         const cookie = document.cookie.split(';')
         let Token = ''
         for(let i = 0; i < cookie.length;i++){
@@ -50,7 +50,5 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
             return redirect(`/Login`)
           }
         }
-
-        
       }
   }

@@ -3,7 +3,7 @@
     <v-row><!-- 여기엔 탑컨텐츠-->
       <v-col>
 
-        <select name="" id="" class="U_select02">
+        <select name="" id="" class="U_select02" :style="{backgroundImage:'url(/assest/aw_down.svg)'}">
             <option value="">1</option>
             <option value="">2</option>
             <option value="">3</option>
@@ -29,7 +29,6 @@
           <dd>690</dd>
 
         </dl>
-        
       </v-col>      
     </v-row>
 
