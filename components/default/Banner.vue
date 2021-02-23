@@ -55,7 +55,7 @@ export default {
     props:{
         height: String,
     },
-    created(){
+    mounted(){
         this.$store.dispatch('GET_COOKIE',{name:'banner'}).then(data=>{
             if(data)
                 this.hide = data

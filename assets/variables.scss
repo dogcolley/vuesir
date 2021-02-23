@@ -251,6 +251,8 @@ body,html  {
         background-color: $color-base2;
         vertical-align: top;
         @extend .U_ft_sz06;
+        padding-right:40px;
+        background-size: 20px;
     }
 
     &input01{
