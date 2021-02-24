@@ -124,6 +124,7 @@
 </template>
 
 <script>
+// 인덱스의 경우 추후 작업으로 
 import CalendarsMini from "~/components/index/CalenderMini.vue";
 import BoardMini from "~/components/index/BoardMini.vue";
 import StateMini from "~/components/index/StateMini.vue";

@@ -2,8 +2,8 @@
   <v-container class="U_bg01">
     <v-row><!-- 여기엔 탑컨텐츠-->
       <v-col>
-
-        <select name="" id="" class="U_select02" :style="{backgroundImage:'url(/assest/aw_down.svg)'}">
+        
+        <select name="" id="" class="U_select02" :style="{backgroundImage:`url(${icon_aw})`}">
             <option value="">1</option>
             <option value="">2</option>
             <option value="">3</option>
@@ -111,23 +111,17 @@
 
     <v-row> <!-- 여기엔 탑컨텐츠-->
       <v-col>
-        <button type="button" >체크</button>  
-        <button type="button" >삭제</button>  
-        <button type="button" >수정</button>  
-        <button type="button" >옵션</button>
-      </v-col>  
-      <v-col>
-        <button>
-          대기
-        </button>
-        <button>
-          취소
-        </button>
+        <button type="button" class="U_btn03 U_btn04" title="체크"><v-icon dense> mdi-square-rounded-outline</v-icon></button>  
+        <button type="button" class="U_btn03 U_btn06 U_ft_sz07"><v-icon dense>mdi-trash-can-outline</v-icon> 삭제</button>  
+        <button type="button" class="U_btn03 U_btn06 U_ft_sz07">수정</button>  
+        <button type="button" class="U_btn03 U_btn06 U_ft_sz07" title="옵션"><v-icon dense>mdi-dots-horizontal</v-icon> </button>
+        <button type="button" class="U_ft_sz07 U_btn07" ><v-icon dense> mdi-square-outline</v-icon>대기</button>
+        <button type="button" class="U_ft_sz07 U_btn07" ><v-icon dense> mdi-square-outline</v-icon>취소</button>
       </v-col>    
       <v-col>
-        <button>엑셀다운</button>        
-        <button>종합리포트</button>        
-        <button>오픈문자 </button>        
+        <button type="button" class="U_btn05 U_btn03 U_ft_sz07">엑셀다운</button>        
+        <button type="button" class="U_btn05 U_btn03 U_ft_sz07">종합리포트</button>        
+        <button type="button" class="U_btn05 U_btn03 U_ft_sz07">오픈문자 </button>        
       </v-col>      
     </v-row>
     
@@ -184,11 +178,15 @@
 <script>
 //import TopFixed from '~/components/common/TopFixed.vue';
 //import BasicTable from '~/components/common/BasicTable.vue';
+import icon_aw from '~/assets/aw_down.svg'
+
 
 export default {
   computed:{
   },
   data: () => ({
+    icon_aw : icon_aw,
+    
     advancedSearch: false,
     
     search_txt : '검색어를 입력해주세요',
