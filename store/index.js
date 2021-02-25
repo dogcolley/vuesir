@@ -5,6 +5,9 @@ const BASEURL = 'http://test2.seoulouba.kr/';
 
 export default {
     state: {
+        $auth : {
+          $login : 'login'
+        },
         $g5 :{},
         $config :{},
         $menu : {},
@@ -13,7 +16,6 @@ export default {
         $wirte : [],
         $baseURL : `${BASEURL}plugin/seoba3/ajax_loading.php`,
         $url : {},
-        modalList : [],
         member : {},
         loadingTxt : '페이지를 로딩중입니다.',
         loading : false,

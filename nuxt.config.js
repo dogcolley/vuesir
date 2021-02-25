@@ -27,7 +27,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    
+    { src: '~/plugins/axios.js' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -52,7 +52,27 @@ export default {
   axios: {
     // extra config e.g
     // BaseURL: 'https://link-to-API'
+    baseURL: 'http://test2.seoulouba.kr', 
+    common: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Accept": "application/json"
+    },
+
   },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
+  },
+
+
 
   //auth
   auth: {

@@ -31,7 +31,7 @@ export default {
       this.$store.dispatch('sms/test_sms_add_action')
     },  
     openModal : function(setModal){
-      this.$store.commit('addModalList',{
+      this.$store.commit('modal/addModalList',{
         type:setModal,
         width:600,
         height:300
