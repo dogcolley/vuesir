@@ -60,6 +60,8 @@ export default {
             if(data)
                 this.hide = data
         })
+
+        //console.log(this)
     },
     data(){
         return{

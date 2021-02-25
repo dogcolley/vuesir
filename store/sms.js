@@ -10,6 +10,6 @@ export default {
     actions: {
         test_sms_add_action (sto){
             sto.commit('test_sms_add')
-        }
+        },
     }
 }
