@@ -15,7 +15,6 @@
 
       <v-col>
         <dl class="U_bd_cate01">
-
           <dt>전체</dt>
           <dd>130,124</dd>
           
@@ -27,7 +26,6 @@
           
           <dt>리뷰어신청(오픈)</dt>
           <dd>690</dd>
-
         </dl>
       </v-col>      
     </v-row>
@@ -114,9 +112,27 @@
         <button type="button" class="U_btn03 U_btn04" title="체크"><v-icon dense> mdi-square-rounded-outline</v-icon></button>  
         <button type="button" class="U_btn03 U_btn06 U_ft_sz07"><v-icon dense>mdi-trash-can-outline</v-icon> 삭제</button>  
         <button type="button" class="U_btn03 U_btn06 U_ft_sz07">수정</button>  
-        <button type="button" class="U_btn03 U_btn06 U_ft_sz07" title="옵션"><v-icon dense>mdi-dots-horizontal</v-icon> </button>
+        <div class="U_tooltip">
+          <button type="button"  title="옵션" @click="option01 = !option01" class="U_btn03 U_btn06 U_ft_sz07">
+            <v-icon dense>
+              mdi-dots-horizontal
+            </v-icon>
+          </button>
+          <div v-if="option01" class="U_tooltip_con">
+            <ul>
+              <li><button>Programmatic tooltip</button></li>
+              <li><button>Programmatic tooltip</button></li>
+              <li><button>Programmatic tooltip</button></li>
+              <li><button>Programmatic tooltip</button></li>
+            </ul>
+          </div>
+
+        </div>
         <button type="button" class="U_ft_sz07 U_btn07" ><v-icon dense> mdi-square-outline</v-icon>대기</button>
         <button type="button" class="U_ft_sz07 U_btn07" ><v-icon dense> mdi-square-outline</v-icon>취소</button>
+ 
+
+        
       </v-col>    
       <v-col>
         <button type="button" class="U_btn05 U_btn03 U_ft_sz07">엑셀다운</button>        
@@ -146,38 +162,17 @@
 
     <v-row class="U_ft_sz07"><!-- 여기엔 탑컨텐츠-->
       <v-col>
-        <ul>
-          <li>
-              <v-row>
-                  <v-col>1</v-col>
-                  <v-col>2</v-col>
-                  <v-col>2</v-col>
-                  <v-col>2</v-col>
-                  <v-col>2</v-col>
-                  <v-col>2</v-col>
-                  <v-col>2</v-col>
-                  <v-col>3</v-col>
-                  <v-col>4</v-col>
-                  <v-col>5</v-col>
-                  <v-col>5</v-col>
-                  <v-col>5</v-col>
-                  <v-col>5</v-col>
-                  <v-col>5</v-col>
-                  <v-col>5</v-col>
-              </v-row>
-          </li>
-        </ul>
       </v-col>      
     </v-row>
 
 
-    
   </v-container>
 </template>
 
 <script>
+//<BasicTable :list="[]" :header="[]" name="Member" />
 //import TopFixed from '~/components/common/TopFixed.vue';
-//import BasicTable from '~/components/common/BasicTable.vue';
+import BasicTable from '~/components/common/BasicTable.vue';
 import icon_aw from '~/assets/aw_down.svg'
 
 
@@ -185,6 +180,7 @@ export default {
   computed:{
   },
   data: () => ({
+    option01: false,
     icon_aw : icon_aw,
     
     advancedSearch: false,

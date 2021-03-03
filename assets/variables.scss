@@ -375,6 +375,15 @@ body,html  {
             @extend .U_mg_wd_ct;
         }
     }
+
+    &tooltip{
+        position:relative;display:inline-block;font-size:0.8rem;vertical-align:top;
+        &_con{position: absolute;left:0;top:calc( 100% - 1px );width:188px;border:1px solid $color-border;background:$color-base;z-index:90}
+        ul,li{padding:0}
+        li{list-style: none;width:100%}
+        button{padding:0 10px;width:100%;text-align: left;}
+        button:hover{background:$color-base2}
+    }
     
     &{
         @include common_setting;
@@ -439,7 +448,7 @@ body,html  {
 /* hd gb */
 .U_hd {
   @extend .U_gd_bg01;
-  * {color:#fff}
+  * {color:$color-base}
 }
 
 /* nav */
@@ -447,7 +456,7 @@ body,html  {
   //@extend .U_gd_bg02;
   border: 0!important;
   background: $color-frame!important;
-  * {color:#fff!important}
+  * {color:$color-base!important}
 }
 
 /*=========== defaulte end*/

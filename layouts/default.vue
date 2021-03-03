@@ -1,12 +1,13 @@
 <template>
   <v-app dark>
+    
     <!--모달-->
-    <template v-for="(data, index) in $store.state.modalList">
+    <template v-for="(data, index) in $store.state.modal.modalList">
       <ModalList :type="data" :key="index" :index="index" />
     </template>
-    
+
     <!--로딩-->
-    <Loading :Loading="$store.state.loading" :text="$store.state.loadingTxt" />
+    <Loading />
   
     <!--왼쪽 네비 -->
     <Gnb :drawer="drawer" @close="drawer = false" @show="drawer=true"/>
@@ -31,7 +32,7 @@
 
       <v-btn icon @click="bell=true"><v-icon>mdi-bell</v-icon></v-btn>
 
-      <v-btn icon @click="$store.dispatch('LOGOUTOUT')"><v-icon>mdi-account-arrow-right-outline</v-icon></v-btn>
+      <v-btn icon @click="$store.dispatch('LOGOUT')"><v-icon>mdi-account-arrow-right-outline</v-icon></v-btn>
 
       <v-btn icon @click.stop="rightDrawer = !rightDrawer"><v-icon>mdi-account-circle</v-icon></v-btn>
 
@@ -80,7 +81,6 @@ export default {
   },
   middleware: 'authCheck',
   mounted(){
-    this.$store.dispatch('CHECK_LODDING')
   },
   methods:{
 

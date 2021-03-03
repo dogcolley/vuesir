@@ -1,6 +1,6 @@
 <template>
   <v-content id="U-modal">
-    <button class="close" @click="()=>{$store.commit('deleteModalList',type.type)}" ></button>
+    <button class="close" @click="()=>{$store.commit('modal/deleteModalList',type.type)}" ></button>
     <div class="wrap">
         <div class="content" :style="{width:`${type.width}px`,height:`${type.height}px`}">
           <Test v-if="type.type =='Test'"/>
