@@ -1,16 +1,23 @@
 <template>
-  <div class="loading-page" v-if="loading" >
-    <div class="loading-content">
-      <div class="loading"></div>
+    <div class="loading-page" v-if="$store.state.loading.loading" >
+      <div class="loading-content">
+        <div class="loading-icon"></div>
+        <p class="loading-text">
+          {{$store.state.loading.loadingTxt}}
+        </p>
+      </div>
     </div>
-  </div>
 </template>
 <script>
   export default {
     name:'loading',
-    props:{
-      text:String,
-      loading:Boolean
+    data(){
+      return{
+        loading:true
+      }
+    },
+    mounted(){
+
     }
   }
 </script>
@@ -22,7 +29,7 @@
   .loading-content{
     @extend .U_modal_wrap;
   }
-  .loading {
+  .loading-icon {
     display: inline-block;
     width: 1.5rem;
     height: 1.5rem;
@@ -30,6 +37,9 @@
     border-radius: 50%;
     border-top-color: $color-theme01;
     animation: spin 1s ease-in-out infinite;
+  }
+  .loading-text{
+    color:#fff
   }
   @keyframes spin {
     to {

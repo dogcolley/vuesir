@@ -52,7 +52,7 @@ export default {
   axios: {
     // extra config e.g
     // BaseURL: 'https://link-to-API'
-    baseURL: 'http://test2.seoulouba.kr', 
+    baseURL: 'http://test2.seoulouba.kr/api', 
     common: {
       "Content-Type": "application/x-www-form-urlencoded",
       "Accept": "application/json"

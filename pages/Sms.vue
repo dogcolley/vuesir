@@ -4,6 +4,7 @@
       <v-btn type="button" @click="openModal('Test')">Test 모달열기</v-btn>
       <v-btn type="button" @click="openModal('엑셀')">엑셀 모달열기</v-btn>
       <v-btn type="button" @click="openModal('SMS')">SMS 모달열기</v-btn>
+      <v-btn type="button" @click="testcheckAuth('SMS')">회원정보 불러오기</v-btn>
     </v-list>
 
     <div>
@@ -26,7 +27,9 @@ export default {
     Test
   },
   methods:{
-
+    testcheckAuth:function(){
+      this.$store.dispatch('MEMBER_INFO')
+    },
     text_cnt : function(){
       this.$store.dispatch('sms/test_sms_add_action')
     },  

@@ -55,6 +55,8 @@
                         </button>
                     </v-card-text>
                     </v-card-actions>
+                    {{$store.state.query.basePage}}
+                    <button type="button" @click="$store.dispatch('MEMBER_INFO')">회원정보확인</button>
                 </div>
             </v-card>
         </div>
@@ -65,15 +67,14 @@
 export default {
     name:"login",
     data:function(){
-    return{
-        id : 'super',
-        pw : 'super@2016',
-        err : false
-    }
+        return{
+            id : 'super',
+            pw : 'super@2016',
+            err : false
+        }
     },
-    computed:{
-    },
-    created() {
+    mounted(){
+        this.$store.commit("querySet")
     },
     methods:{
          loginFN : async function () {
@@ -81,14 +82,18 @@ export default {
                 id : this.id,
                 pw : this.pw,
             }
-            await this.$store.dispatch("LOGIN",data)
-            if(this.$store.state.login){ 
-                if(this.$store.state.query.basePage)
-                    this.$store.$router.go(`/${this.$store.state.query.basePage}`)
-                else
-                    this.$store.$router.go('/')
-            }else 
-                this.err = true
+            await this.$store.dispatch("LOGIN",data).then(data=>{
+                alert(this.$store.state.query.basePage)
+                alert('로그인완료')
+                /*
+                if(this.$store.state.login){ 
+                    if(this.$store.state.query.basePage)
+                        this.$store.$router.go(`/${this.$store.state.query.basePage}`)
+                    else
+                        this.$store.$router.go('/')
+                }
+                */
+            })
         }
     },
 }
