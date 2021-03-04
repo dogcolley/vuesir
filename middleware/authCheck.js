@@ -39,10 +39,10 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
         */
         
           
-        if(Token == '' && route.name !== "Login"){
+        if(Token == '' && route.name !== "Login" && false){
           store.state.login = false
           return redirect(`/Login${basePage ? '?basePage='+basePage : ''}`)
-        }else if (Token){
+        }else if (Token || true){
           store.state.login = true
           store.state.loginToken = Token
           if(route.name == "Login"){
@@ -63,7 +63,7 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
             Token = Arr[1]
           }
         }
-        if(route.name !== "Login"){
+        if(route.name !== "Login" && false){
           if(Token == ''){
             return redirect(`/Login`)
           }else if(Token !== store.state.loginToken ){
