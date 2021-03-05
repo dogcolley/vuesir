@@ -91,7 +91,7 @@
       </v-bottom-sheet>
 
       <v-row> <!-- 여기엔 탑컨텐츠-->
-        <v-col cols="12" md="5" sm="5">
+        <v-col cols="12" md="6" sm="6">
           <button type="button" class="U_btn03 U_btn04" title="체크"><v-icon dense> mdi-square-rounded-outline</v-icon></button>  
           <button type="button" class="U_btn03 U_btn06 U_ft_sz07"><v-icon dense>mdi-trash-can-outline</v-icon> 삭제</button>  
           <button type="button" class="U_btn03 U_btn06 U_ft_sz07">수정</button>  
@@ -117,7 +117,7 @@
 
           
         </v-col>    
-        <v-col class="text-left text-sm-right text-mb-right"  cols="12" md="5" sm="5">
+        <v-col class="text-left text-sm-right text-mb-right"  cols="12" md="6" sm="6">
           <button type="button" class="U_btn05 U_btn03 U_ft_sz07">엑셀다운</button>        
           <button type="button" class="U_btn05 U_btn03 U_ft_sz07">종합리포트</button>        
           <button type="button" class="U_btn05 U_btn03 U_ft_sz07">오픈문자 </button>        

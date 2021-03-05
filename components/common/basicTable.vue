@@ -13,8 +13,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(id) in 10" :index="id">
-                    <td>1</td>
+                <tr v-for="(id) in 10" :key="id">
+                    <td>id : {{id}}</td>
                     <td>2</td>
                     <td>3</td>
                     <td>4</td>
@@ -41,11 +41,6 @@
             </ul>
         </div>
 
-        <p>
-            {{list}}
-            {{header}}
-            {{name}}
-        </p>
   </v-container>
 </template>
 
