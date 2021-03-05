@@ -4,9 +4,7 @@
       <v-row><!-- 여기엔 탑컨텐츠-->
         <v-col cols="12" md="5" class="U_m_pd0_bm">
           <select name="" id="" class="U_select02 ch-sl01" :style="{backgroundImage:`url(${icon_aw})`}">
-              <option value="">대충아무거나</option>
-              <option value="">2</option>
-              <option value="">3</option>
+              <option value="">회원명</option>
           </select>
           <input type="text" class="U_input01 ch-input01">
           <button type="button" class="U_btn04 U_btn03" title="검색" ><v-icon dense>mdi-magnify</v-icon></button>
@@ -18,13 +16,16 @@
             <dt>전체</dt>
             <dd>130,124</dd>
             
-            <dt>대기</dt>
+            <dt>어제가입</dt>
             <dd>8,044</dd>
             
-            <dt>작업대기</dt>
+            <dt>어제탈퇴</dt>
             <dd>690</dd>
             
-            <dt>리뷰어신청(오픈)</dt>
+            <dt>스페셜</dt>
+            <dd>690</dd>
+            
+            <dt>블랙</dt>
             <dd>690</dd>
           </dl>
         </v-col>      

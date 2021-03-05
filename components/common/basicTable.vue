@@ -1,5 +1,5 @@
 <template>
-    <div class="U_ft_sz07">
+    <v-container class="U_ft_sz07 U_m_pd0">
         <table class="U_table01">
             <thead>
                 <tr>
@@ -40,7 +40,7 @@
                 <li><button type="button" class="end"><v-icon dense>mdi-chevron-right</v-icon><v-icon dense>mdi-chevron-right</v-icon></button></li>
             </ul>
         </div>
-  </div>
+  </v-container>
 </template>
 
 <script>

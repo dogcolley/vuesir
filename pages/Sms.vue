@@ -12,7 +12,7 @@
     </div>
 
     <v-btn  @click="text_cnt()">cnt</v-btn>
-    <v-btn  @click="$store.dispatch('TESTING')">cnt global</v-btn>
+    <v-btn  @click="testRetrun()">cnt global</v-btn>
 
     
     <Test />
@@ -29,6 +29,11 @@ export default {
   methods:{
     testcheckAuth:function(){
       this.$store.dispatch('MEMBER_INFO')
+    },
+    testRetrun:function(){
+      this.$store.dispatch('sms/test_sms_return').then(data=>{
+        console.log(data)
+      })
     },
     text_cnt : function(){
       this.$store.dispatch('sms/test_sms_add_action')
