@@ -220,6 +220,10 @@ body,html  {
         &05{
             padding-left:15px;
             padding-right:15px;
+            @include xs{
+                padding-left:10px;
+                padding-right:10px;  
+            }
             height:$in-ho;
             background-color: $color-base2;
         }
@@ -251,12 +255,11 @@ body,html  {
         height:$in-ho;
         line-height:$in-ho;
         padding-left:15px;
-        padding-right:15px;
+        padding-right:30px;
         border:1px solid $color-border01;
         background-color: $color-base2;
         vertical-align: top;
         @extend .U_ft_sz06;
-        padding-right:40px;
         background-size: 20px;
         background-position: calc( 100% - 5px ) 8px;
     }
@@ -373,6 +376,9 @@ body,html  {
         }
     }
 
+    &ch_sl01{}
+    &ch_sl01{}
+
     &tooltip{
         position:relative;display:inline-block;font-size:0.8rem;vertical-align:top;
         &_con{position: absolute;left:0;top:calc( 100% - 1px );width:188px;border:1px solid $color-border01;background:$color-base;z-index:90}
@@ -383,8 +389,8 @@ body,html  {
     }
 
     &table01{width:100%;border-collapse: collapse;letter-spacing: -1px;
-        th{background:$color-theme03;color:$color-font06;font-weight: 500;padding-top:5px;padding-bottom:5px;}
-        td{border-bottom:1px solid $color-border01;padding-bottom:7px;padding-top:7px}
+        th{background:$color-theme03;color:$color-font06;font-weight: 500;padding:5px}
+        td{border-bottom:1px solid $color-border01;padding: 3px 7px }
     }
 
     &page01{
@@ -393,15 +399,35 @@ body,html  {
         button{width:100%;height:100%;vertical-align: top;}
         .on button{border: 1px solid $color-border01;font-weight: 500;}
         .start, .end{overflow: hidden;}
-        .start i, .end i {position:absolute;top:0}
-        .start i:first-child, .end i:first-child {left:-3px}
-        .start i:last-child, .end i:last-child {right:-3px}
+        .start i, .end i {position:absolute;top:2px}
+        .start i:first-child, .end i:first-child {left:-1px}
+        .start i:last-child, .end i:last-child {right:-1px}
     }
     
     &{
         @include common_setting;
     }
 
+
+    &m_pd0{
+        @include xs{
+            padding:0
+        }
+    }
+
+    &m_pd0_ht{
+        @include xs{
+            padding-top   :0;
+            padding-bottom:0;
+        }
+    }
+
+    
+    &m_pd0_bm{
+        @include xs{
+            padding-bottom:0;
+        }
+    }
 }
 
 /*

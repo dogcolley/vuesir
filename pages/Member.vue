@@ -1,15 +1,14 @@
 <template>
   <v-container class="U_bg01">
-
-    <v-container>
+    <v-container class="U_m_pd0">
       <v-row><!-- 여기엔 탑컨텐츠-->
-        <v-col cols="12" md="5">
-          <select name="" id="" class="U_select02" :style="{backgroundImage:`url(${icon_aw})`}">
-              <option value="">1</option>
+        <v-col cols="12" md="5" class="U_m_pd0_bm">
+          <select name="" id="" class="U_select02 ch-sl01" :style="{backgroundImage:`url(${icon_aw})`}">
+              <option value="">대충아무거나</option>
               <option value="">2</option>
               <option value="">3</option>
           </select>
-          <input type="text" class="U_input01">
+          <input type="text" class="U_input01 ch-input01">
           <button type="button" class="U_btn04 U_btn03" title="검색" ><v-icon dense>mdi-magnify</v-icon></button>
           <button type="button" class="U_btn05 U_btn03" title="옵션검색" @click="advancedSearch=true"><v-icon dense >mdi-dots-horizontal</v-icon></button>
         </v-col>      
@@ -91,7 +90,7 @@
       </v-bottom-sheet>
 
       <v-row> <!-- 여기엔 탑컨텐츠-->
-        <v-col cols="12" md="6" sm="6">
+        <v-col cols="12" md="6" sm="6" class="U_m_pd0_bm">
           <button type="button" class="U_btn03 U_btn04" title="체크"><v-icon dense> mdi-square-rounded-outline</v-icon></button>  
           <button type="button" class="U_btn03 U_btn06 U_ft_sz07"><v-icon dense>mdi-trash-can-outline</v-icon> 삭제</button>  
           <button type="button" class="U_btn03 U_btn06 U_ft_sz07">수정</button>  
@@ -127,7 +126,11 @@
     </v-container>
     
     <!-- 여기엔 탑컨텐츠-->
-    <BasicTable :list="[]" :header="[]" name="Member" />
+    <v-row>
+      <v-col cols="12">
+        <BasicTable :list="[]" :header="[]" name="Member" />
+      </v-col>
+    </v-row>
     
   </v-container>
 </template>
@@ -186,3 +189,20 @@ export default {
   }), 
 }
 </script>
+
+
+<style lang="scss">
+
+.ch-sl01{
+  @include xs{
+    max-width:70px
+  }
+}
+.ch-input01{
+  @include xs{
+    max-width:calc( 100% - 157px )
+  }
+}
+
+
+</style>
