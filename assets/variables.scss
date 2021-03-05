@@ -19,7 +19,7 @@ $color-frame   : #273c4d;
 $color-out     : #000;
 $color-mask    : rgba(0,0,0,0.8);
 $color-mask2   : rgba(255,255,255,0.8);
-$color-border  : #d9d9d9;
+$color-border01  : #d9d9d9;
 
 $color-theme01 : #7C54FF;
 $color-theme02 : #4D52E8; 
@@ -27,6 +27,12 @@ $color-theme03 : #6292FF;
 $color-theme04 : #4DA4E8; 
 $color-theme05 : #54E1FF;
 
+$color-font01 : #000;
+$color-font02 : #333;
+$color-font03 : #555;
+$color-font04 : #777;
+$color-font05 : #aaa;
+$color-font06 : #fff;
 
 $color-complementary01 : #FFEE47;
 $color-complementary02 : #9C8114; 
@@ -51,55 +57,39 @@ $in-h     : 28px;
 $in-ho    : 30px;
 
 /* #3 maxin */
-@mixin mb{
-    @media (max-width: #{$breakpoint-tablet-vt - 1px}) {
+@mixin xs{
+    @media (max-width: 599px) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (min-width:600px) and (max-width: 959) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width:960px) and (max-width: 1263) {
         @content;
     }
 }
 
 
-@mixin m-sm {
-  @media (max-width: #{$breakpoint-mobile - 1px}) {
-    @content;
-  }
-}
-
-
-@mixin m-md {
-    @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-mobile-md - 1px}) {
+@mixin lg {
+    @media (min-width:1264px) and (max-width: 1903) {
         @content;
     }
 }
 
-@mixin m-lz {
-    @media (min-width: #{$breakpoint-mobile-md}) and (max-width: #{$breakpoint-mobile-lz - 1px}) {
+
+@mixin xl {
+    @media (min-width:1904px) {
         @content;
     }
 }
 
-@mixin tab {
-    @media (min-width: #{$breakpoint-tablet-hz - 1px}) {
-        @content;
-    }
-}
 
-@mixin tab-vt {
-  @media (min-width: #{$breakpoint-mobile-lz}) and (max-width: #{$breakpoint-tablet-vt - 1px}) {
-    @content;
-  }
-}
-
-@mixin tab-hz {
-    @media (min-width: #{$breakpoint-tablet-vt}) and (max-width: #{$breakpoint-tablet-hz - 1px}) {
-      @content;
-    }
-}
-  
-@mixin pc {
-  @media (min-width: #{$breakpoint-desktop}) {
-    @content;
-  }
-}
 
 @mixin linear-gradient($direction, $color-stops...) {
     background: nth(nth($color-stops, 1), 1);
@@ -119,23 +109,23 @@ $in-ho    : 30px;
         @if ($i==0){
             font-size:$size;
         } @else if($i==1){
-            @include tab-hz{
+            @include xl{
                 font-size:$size;
             }
         } @else if($i==2){
-            @include tab-vt{
+            @include lg{
                 font-size:$size;
             }
         } @else if($i==3){
-            @include m-lz{
+            @include md{
                 font-size:$size;
             }
         } @else if($i==4){
-            @include m-md{
+            @include sm{
                 font-size:$size;
             }
         } @else if($i==5){
-            @include m-sm{
+            @include xs{
                 font-size:$size;
             }
         }
@@ -215,7 +205,7 @@ body,html  {
             border-radius: 0!important;
             box-shadow:  0 0 0 0 !important;
             box-sizing: border-box;
-            border:1px solid $color-border;
+            border:1px solid $color-border01;
             background-color: $color-base2;
             vertical-align: top;
         }
@@ -262,7 +252,7 @@ body,html  {
         line-height:$in-ho;
         padding-left:15px;
         padding-right:15px;
-        border:1px solid $color-border;
+        border:1px solid $color-border01;
         background-color: $color-base2;
         vertical-align: top;
         @extend .U_ft_sz06;
@@ -276,7 +266,7 @@ body,html  {
         line-height:$in-ho;
         padding-left:15px;
         padding-right:15px;
-        border:1px solid $color-border;
+        border:1px solid $color-border01;
         background-color: $color-base2;
         @extend .U_ft_sz06;
     }
@@ -341,14 +331,21 @@ body,html  {
     }
     
     &bd_cate01{
-        @extend .U_clear, .U_ft_sz06;
+        display:inline-block;vertical-align: bottom;
+        @extend .U_clear, .U_ft_sz07;
         > * {float:left}
         > dt{
             padding-right:10px;
-            border-right:1px solid $color-border;
+            border-right:1px solid $color-border01;
             margin-right:10px;
             margin-left:30px;
+            @include xs{
+                padding-right:5px;
+                margin-right :5px;
+                margin-left  :5px;
+            }
         }
+        > dt:first-child{margin-left:0}
         > dd{ color:$color-complementary04}
     }
 
@@ -378,11 +375,27 @@ body,html  {
 
     &tooltip{
         position:relative;display:inline-block;font-size:0.8rem;vertical-align:top;
-        &_con{position: absolute;left:0;top:calc( 100% - 1px );width:188px;border:1px solid $color-border;background:$color-base;z-index:90}
+        &_con{position: absolute;left:0;top:calc( 100% - 1px );width:188px;border:1px solid $color-border01;background:$color-base;z-index:90}
         ul,li{padding:0}
         li{list-style: none;width:100%}
         button{padding:0 10px;width:100%;text-align: left;}
         button:hover{background:$color-base2}
+    }
+
+    &table01{width:100%;border-collapse: collapse;letter-spacing: -1px;
+        th{background:$color-theme03;color:$color-font06;font-weight: 500;padding-top:5px;padding-bottom:5px;}
+        td{border-bottom:1px solid $color-border01;padding-bottom:7px;padding-top:7px}
+    }
+
+    &page01{
+        ul{display:inline-block}
+        li{display:inline-block;vertical-align: top;width:24px;height:24px;position: relative;}
+        button{width:100%;height:100%;vertical-align: top;}
+        .on button{border: 1px solid $color-border01;font-weight: 500;}
+        .start, .end{overflow: hidden;}
+        .start i, .end i {position:absolute;top:0}
+        .start i:first-child, .end i:first-child {left:-3px}
+        .start i:last-child, .end i:last-child {right:-3px}
     }
     
     &{
@@ -391,6 +404,7 @@ body,html  {
 
 }
 
+/*
 .M, .TM{
     @include mb{
         &_{
@@ -415,6 +429,7 @@ body,html  {
         }
     }
 }
+*/
 
 /*=========== defaulte Start*/
 

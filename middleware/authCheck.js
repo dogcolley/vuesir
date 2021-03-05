@@ -42,7 +42,7 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
         if(Token == '' && route.name !== "Login" && false){
           store.state.login = false
           return redirect(`/Login${basePage ? '?basePage='+basePage : ''}`)
-        }else if (Token || true){
+        }else if (Token){
           store.state.login = true
           store.state.loginToken = Token
           if(route.name == "Login"){

@@ -88,7 +88,7 @@ export default {
               'Authorization' : sto.state.loginToken,
               "Content-Type"  : "application/x-www-form-urlencoded",
               "Accept"        : "application/json",
-               "Cookie"        : `PHPSESSID=${sto.state.loginToken};`
+              /*"Cookie"        : `PHPSESSID=${sto.state.loginToken};`*/
             }
           }).then(res=>{
             console.log(res);
