@@ -133,7 +133,6 @@
 </template>
 
 <script>
-//import TopFixed from '~/components/common/TopFixed.vue';
 import BasicTable from '~/components/common/BasicTable.vue';
 import icon_aw from '~/assets/aw_down.svg'
 

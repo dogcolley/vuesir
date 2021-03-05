@@ -40,7 +40,6 @@
                 <li><button type="button" class="end"><v-icon>mdi-chevron-right</v-icon><v-icon>mdi-chevron-right</v-icon></button></li>
             </ul>
         </div>
-
   </v-container>
 </template>
 
