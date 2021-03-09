@@ -199,11 +199,15 @@ export default {
     max-width:70px
   }
 }
+
 .ch-input01{
+  width:180px;
   @include xs{
     max-width:calc( 100% - 157px )
   }
 }
+
+
 
 
 </style>

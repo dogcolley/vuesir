@@ -1,5 +1,8 @@
 <template>
   <div>
+
+    <h3>이몌뉴는 사용하지 않습니다. 지금은 테스트 용도로 사용하고있습니다.</h3>
+
     <v-list>
       <v-btn type="button" @click="openModal('Test')">Test 모달열기</v-btn>
       <v-btn type="button" @click="openModal('엑셀')">엑셀 모달열기</v-btn>
@@ -14,7 +17,7 @@
     <v-btn  @click="text_cnt()">cnt</v-btn>
     <v-btn  @click="testRetrun()">cnt global</v-btn>
 
-    
+
     <Test />
 
   </div>
@@ -48,6 +51,9 @@ export default {
   },
   created(){
     this.$store.commit('setTitle','SMS관리')
+  },
+  mounted(){
+    console.log(this.$store.state.$menu)    
   }
 }
 </script>

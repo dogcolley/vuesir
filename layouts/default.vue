@@ -83,7 +83,13 @@ export default {
   mounted(){
   },
   methods:{
-
-  }
+  },
+  created(){
+    this.$store.dispatch('MEMBER_INFO').then(state=>{
+      if(this.$route.name !=='Login' && !state)
+        this.$store.$router.go('/Login')
+    })
+ 
+ }
 }
 </script>

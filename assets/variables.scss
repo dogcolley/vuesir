@@ -241,8 +241,6 @@ body,html  {
         }
 
 
-
-
     }
 
     &select01{
@@ -259,9 +257,14 @@ body,html  {
         border:1px solid $color-border01;
         background-color: $color-base2;
         vertical-align: top;
+        max-width:100px;
         @extend .U_ft_sz06;
         background-size: 20px;
         background-position: calc( 100% - 5px ) 8px;
+    
+        @include xs{
+            max-width: 87px;
+        }
     }
 
     &input01{
@@ -334,22 +337,31 @@ body,html  {
     }
     
     &bd_cate01{
+        padding:0!important;
+        > li{padding:0!important}
+        li{list-style: none;}
         display:inline-block;vertical-align: bottom;
         @extend .U_clear, .U_ft_sz07;
         > * {float:left}
-        > dt{
+        .label{
+            display: inline-block;
+            vertical-align: top;
             padding-right:10px;
             border-right:1px solid $color-border01;
             margin-right:10px;
-            margin-left:30px;
+            margin-left:20px;
             @include xs{
                 padding-right:5px;
                 margin-right :5px;
                 margin-left  :5px;
             }
         }
-        > dt:first-child{margin-left:0}
-        > dd{ color:$color-complementary04}
+        >*:first-child{margin-left:0}
+        .value{ 
+            color:$color-complementary04;
+            display: inline-block;
+            vertical-align: top;
+        }
     }
 
     &modal{
@@ -375,9 +387,6 @@ body,html  {
             @extend .U_mg_wd_ct;
         }
     }
-
-    &ch_sl01{}
-    &ch_sl01{}
 
     &tooltip{
         position:relative;display:inline-block;font-size:0.8rem;vertical-align:top;
@@ -456,6 +465,7 @@ body,html  {
     }
 }
 */
+
 
 /*=========== defaulte Start*/
 
