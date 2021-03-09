@@ -1,13 +1,12 @@
 <template>
-  <v-container class="U_bg01">
-    <v-container class="U_m_pd0">
+   <v-container class="U_m_pd0">
+      
+      <h3 style="background:pink">{{name}}</h3>
+
       <v-row><!-- 여기엔 탑컨텐츠-->
         <v-col cols="12" md="5" class="U_m_pd0_bm">
           <select name="" id="" class="U_select02 ch-sl01" :style="{backgroundImage:`url(${icon_aw})`}">
-              <option value="">업체명</option>
-              <option value="">담당자명</option>
-              <option value="">담당마켓터</option>
-              <option value="">대표전화</option>
+              <option value=""  v-for="(option,index) in config.ch.option" :key="index" >{{option.text}}</option>
           </select>
           <input type="text" class="U_input01 ch-input01">
           <button type="button" class="U_btn04 U_btn03" title="검색" ><v-icon dense>mdi-magnify</v-icon></button>
@@ -15,26 +14,18 @@
         </v-col>      
 
         <v-col cols="12" md="7" class="text-left text-md-right">
-          <dl class="U_bd_cate01">
-            <dt>승인대기</dt>
-            <dd>130,124</dd>
-            
-            <dt>승인완료</dt>
-            <dd>8,044</dd>
-            
-            <dt>계약종료</dt>
-            <dd>8,044</dd>
-            
-            <dt>계약없음</dt>
-            <dd>8,044</dd>
-            
-          </dl>
+          <ul class="U_bd_cate01">
+              <li v-for="(cate,index) in config.cate" :key="index">
+                  <span class="label" >{{cate.text}}</span>
+                  <button class="value" >{{cate.num}}</button>
+              </li>
+          </ul>
         </v-col>      
       </v-row>
 
       <v-bottom-sheet
-          inset
-          v-model="advancedSearch"
+        inset
+        v-model="advancedSearch"
       >
         <v-sheet height="3000px">
           <v-toolbar
@@ -82,25 +73,26 @@
           </v-toolbar>
           
           <v-container>
-            <v-row><v-col>검색 옵션</v-col></v-row>
+            <v-row>
+                <v-col style="border:1px solid pink" cols="12" md="6"  v-for=" (input, index) in config.ch.detail" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
+            </v-row>
           </v-container>
 
         </v-sheet>
       </v-bottom-sheet>
 
       <v-row> <!-- 여기엔 탑컨텐츠-->
-        <v-col cols="12" md="6" sm="6" class="U_m_pd0_bm">
+        <v-col cols="12" md="5" sm="5" class="U_m_pd0_bm">
           <button type="button" class="U_btn03 U_btn04" title="체크"><v-icon dense> mdi-square-rounded-outline</v-icon></button>  
-          <button type="button" class="U_btn03 U_btn06 U_ft_sz07"><v-icon dense>mdi-domain</v-icon> 업체등록</button>  
-          <button type="button" class="U_btn03 U_btn06 U_ft_sz07"><v-icon dense>mdi-trash-can-outline</v-icon> 삭제</button>  
+          <button type="button" class="U_btn03 U_btn06 U_ft_sz07" @click="$store.dispatch(`${name}/SET_LIST_DELETE`)"><v-icon dense>mdi-trash-can-outline</v-icon> 삭제</button>  
           <button type="button" class="U_btn03 U_btn06 U_ft_sz07">수정</button>  
           <div class="U_tooltip">
-            <button type="button"  title="옵션" @click="option01 = !option01" class="U_btn03 U_btn06 U_ft_sz07">
+            <button type="button"  title="옵션" @click="listOption = !listOption" class="U_btn03 U_btn06 U_ft_sz07">
               <v-icon dense>
                 mdi-dots-horizontal
               </v-icon>
             </button>
-            <div v-if="option01" class="U_tooltip_con">
+            <div v-if="listOption" class="U_tooltip_con">
               <ul>
                 <li><button>Programmatic tooltip</button></li>
                 <li><button>Programmatic tooltip</button></li>
@@ -112,7 +104,7 @@
 
           
         </v-col>    
-        <v-col class="text-left text-sm-right text-mb-right"  cols="12" md="6" sm="6" v-if="false">
+        <v-col class="text-left text-sm-right text-mb-right"  cols="12" md="7" sm="7">
           <button type="button" class="U_btn05 U_btn03 U_ft_sz07">엑셀다운</button>        
           <button type="button" class="U_btn05 U_btn03 U_ft_sz07">종합리포트</button>        
           <button type="button" class="U_btn05 U_btn03 U_ft_sz07">오픈문자 </button>        
@@ -120,86 +112,30 @@
       </v-row>
 
     </v-container>
-    
-    <!-- 여기엔 탑컨텐츠-->
-    <v-row>
-      <v-col cols="12">
-        <BasicTable :list="[]" :header="[]" name="Member" />
-      </v-col>
-    </v-row>
-    
-  </v-container>
 </template>
 
 <script>
-import BasicTable from '~/components/common/BasicTable.vue';
 import icon_aw from '~/assets/aw_down.svg'
-
+import SearchOptions from '~/components/common/SearchOptions'
 
 export default {
-  computed:{
-  },
-  components:{
-    BasicTable
-  },
-  data: () => ({
-    option01: false,
-    icon_aw : icon_aw,
-    
-    advancedSearch: false,
-    
-    search_txt : '검색어를 입력해주세요',
-    
-    search_option:[
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
-
-    select_option:{
-
+    props:{
+        name:String,
+        config:Object
     },
-
-    board:[
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
-    
-    list:[
-      {},
-      {},
-      {},
-      {},
-      {},
-    ],
-
-    page:{
-
+    components:{
+        SearchOptions,
     },
-    
-  }), 
+    data: () => ({
+        icon_aw : icon_aw,
+        advancedSearch: false,
+        listOption: false,
+        search:{}
+   }),
+
 }
 </script>
 
-
-<style lang="scss">
-
-.ch-sl01{
-  @include xs{
-    max-width:70px
-  }
-}
-.ch-input01{
-  width:180px;
-  @include xs{
-    max-width:calc( 100% - 157px )
-  }
-}
-
+<style>
 
 </style>

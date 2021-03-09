@@ -56,8 +56,6 @@
                             </button>
                         </v-card-text>
                         </v-card-actions>
-                        {{$store.state.query.basePage}}
-                        <button type="button" @click="$store.dispatch('MEMBER_INFO')">회원정보확인</button>
                     </v-col>
                 </v-row>
             </v-card>
@@ -85,16 +83,12 @@ export default {
                 pw : this.pw,
             }
             await this.$store.dispatch("LOGIN",data).then(data=>{
-                alert(this.$store.state.query.basePage)
-                alert('로그인완료')
-                /*
                 if(this.$store.state.login){ 
                     if(this.$store.state.query.basePage)
                         this.$store.$router.go(`/${this.$store.state.query.basePage}`)
                     else
                         this.$store.$router.go('/')
                 }
-                */
             })
         }
     },
