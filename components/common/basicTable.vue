@@ -3,24 +3,12 @@
         <table class="U_table01">
             <thead>
                 <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
+                    <th v-for="(item,id) in data.header" :key="id">{{item.name}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(id) in 10" :key="id">
-                    <td>id : {{id}}</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
+                <tr v-for="(items,id) in data.item" :key="id">
+                    <td v-for="(item,id2) in items" :key="id2">{{item}}</td>
                 </tr>
             </tbody>
         </table>
@@ -46,10 +34,14 @@
 <script>
 export default {
     props:{
-        list:Array,
-        header:Array,
+        data:Array,
         name: String,
     },
+    methods:{
+        showView(){
+            this.name;
+        }
+    }
 }
 </script>
 

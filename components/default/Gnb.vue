@@ -21,7 +21,7 @@
               exact
             >
               <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon dense>{{ item.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                 <v-list-item-title v-text="item.title" />
@@ -51,7 +51,7 @@
                   :to="item2.to"
                 >
                 <v-list-item-content>
-                  <v-list-item-title v-text="item2.title" style="font-size:0.9em" />
+                  <v-list-item-title v-text="item2.title"/>
                 </v-list-item-content>
                 </v-list-item>
               </v-list>

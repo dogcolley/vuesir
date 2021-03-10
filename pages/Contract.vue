@@ -5,7 +5,7 @@
 
     <v-row>
       <v-col cols="12">
-        <BasicTable :list="[]" :header="[]" name="Member" />
+        <BasicTable :data="$store.state.contract.list" name="contract" />
       </v-col>
     </v-row>
     
@@ -29,7 +29,10 @@ export default {
   }),
   created(){
     this.$store.commit('setTitle','계약관리')
-  } 
+  },
+  mounted(){
+    this.$store.dispatch('contract/GET_LIST');
+  }
 }
 </script>
 

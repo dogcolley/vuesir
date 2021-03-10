@@ -1,8 +1,5 @@
 <template>
    <v-container class="U_m_pd0">
-      
-      <h3 style="background:pink">{{name}}</h3>
-
       <v-row><!-- 여기엔 탑컨텐츠-->
         <v-col cols="12" md="5" class="U_m_pd0_bm">
           <select name="" id="" class="U_select02 ch-sl01" :style="{backgroundImage:`url(${icon_aw})`}">
@@ -27,7 +24,7 @@
         inset
         v-model="advancedSearch"
       >
-        <v-sheet height="3000px">
+        <v-sheet>
           <v-toolbar
             color="white"
             flat
@@ -73,8 +70,8 @@
           </v-toolbar>
           
           <v-container>
-            <v-row>
-                <v-col style="border:1px solid pink" cols="12" md="6"  v-for=" (input, index) in config.ch.detail" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
+            <v-row style="border-left:1px solid #d9d9d9;border-top:1px solid #d9d9d9">
+                <v-col style="border:1px solid #d9d9d9;border-top:0;border-left:0" cols="12" v-for=" (input, index) in config.ch.detail" :md="input.col" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
             </v-row>
           </v-container>
 
@@ -137,5 +134,7 @@ export default {
 </script>
 
 <style>
+
+  div[role="document"] .v-dialog{overflow: auto !important;}
 
 </style>

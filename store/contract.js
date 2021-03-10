@@ -11,11 +11,11 @@ export default {
                 ],
                 keyWord: '',
                 detail:[
-                    {text:'등록일자시작',type:'date',value:'',name:'ctr_reg_dt_start',option:[]},
-                    {text:'등록일자종료',type:'date',value:'',name:'ctr_reg_dt_end',option:[]},
-                    {text:'test input ',type:'text',value:'',name:'ctr_test_text',option:[]},
-                    {text:'test radio ',type:'radio',value:'',name:'ctr_test_radio',option:['1','2','3','4']},
-                    {text:'test checkbox ',type:'checkbox',value:'',name:'ctr_test_radio',option:['1','2','3','4']},
+                    {col:6,text:'등록일자시작',type:'date',value:'',name:'ctr_reg_dt_start',option:[]},
+                    {col:6,text:'등록일자종료',type:'date',value:'',name:'ctr_reg_dt_end',option:[]},
+                    {col:6,text:'test input ',type:'text',value:'',name:'ctr_test_text',option:[]},
+                    {col:6,text:'test radio ',type:'radio',value:'',name:'ctr_test_radio',option:['1','2','3','4'],label:['라벨1','라벨2','라벨3','라벨4']},
+                    {col:12,text:'test checkbox ',type:'checkbox',value:'',name:'ctr_test_radio',option:['1','2','3','4'],label:['라벨1','라벨2','라벨3','라벨4']},
                 ]
             },
             cate:[
@@ -27,6 +27,19 @@ export default {
         },
         list:{
             total:0,
+            header:[
+                {name:'번호',sort:true,sm:true},
+                {name:'업체번호',sort:true},
+                {name:'업체명',sort:true},
+                {name:'대표전화',sort:true},
+                {name:'담당자명',sort:true},
+                {name:'담당자 연락처',sort:true},
+                {name:'담당자 E-mail',sort:true},
+                {name:'담당 마케터',sort:true},
+                {name:'계약 건수',sort:true},
+                {name:'계약 등록',sort:true},
+                {name:'현재 계약상태',sort:true},
+            ],
             option:{
                 
             },
@@ -34,29 +47,41 @@ export default {
                 now:0,
                 total:10,
                 piece:5,
+                col:10
             },
             query:`name=""&subject=''`,
-            item:[
-                {},
-                {},
-                {},
-                {},
-                {},
-            ]
+            item:[{}]
         },
         info:{},
     },
     mutations: {
+        itemUpdate(state,data){
+            state.list.item = data
+        }   
 
     },
     actions: {
         GET_LIST(sto,data){
-        //리스트 불러오기
-        /*
-        .page
-        .action //search,next,prev,end,first,
-        
-        */
+            //리스트 불러오기
+            /*
+            .page
+            .action //search,next,prev,end,first,       
+            */
+            const exData = [{
+                id:'123',
+                ctr_id:'123',
+                ctr_name:'업체명',
+                ctr_call: '010-0000-0000',
+                mb_name :'이름',
+                mb_phone:'010-0000-0000',
+                mb_email:'test@mail.com',
+                md_name: 'name',
+                ctr_num: '3',
+                ctr_btn: '버튼',
+                ctr_status:'진행중',
+            }]
+            //sto.commit('itemUpdate',exData)
+
         },
         SET_PAGE(){
         //페이지 셋팅
