@@ -1,9 +1,9 @@
 <template>
-    <v-template class="detail-wrap" style="position:relative" >
+    <v-template class="detail-wrap">
 
 
         <span class="tit"
-            v-if="data.type == 'checkbox' || data.type == 'radio01' "
+            v-if="data.type == 'checkbox' || data.type == 'radio' "
         >{{data.text}}</span>
 
         <v-text-field label="Main input" class="input01" hide-details="auto" v-if="data.type == 'text'"></v-text-field>
@@ -12,14 +12,17 @@
             <v-radio
                 v-for=" (value, id) in data.option"
                 :key="id"
-                :label="`${value}`"
+                :label="data.label[id]"
                 :value="value"
                 color="#6292FF"
+                dense
             ></v-radio>
         </v-radio-group>
 
         <div v-if="data.type == 'checkbox'"></div>
-        <v-checkbox class="checkbox01" v-if="data.type == 'checkbox'" color="#6292FF" :label="`Checkbox 1`" v-for=" (value,id) in data.option" :key="id" ></v-checkbox>
+        <span v-if="data.type == 'checkbox'" >
+            <v-checkbox dense class="checkbox01" color="#6292FF" :label="data.label[id]" v-for=" (value,id) in data.option" :key="id" ></v-checkbox>
+        </span>
 
         <v-menu
           v-if="data.type == 'date'" 
@@ -32,7 +35,7 @@
         >
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
-              label="Picker without buttons"
+              :label="data.text"
               prepend-icon="mdi-calendar"
               readonly
               v-bind="attrs"
@@ -64,6 +67,7 @@ export default {
 
     .detail-{
         &wrap{
+            position: relative;
             .tit{position:absolute;top:0; @extend .U_ft_sz07 ; min-width:300px}
 
             .input01{}
@@ -75,7 +79,9 @@ export default {
                 
             }
             
-            .radio01{/*margin-top:0!important*/}
+            .radio01{
+                .v-messages{display:none!important}
+            }
             
             .date01{}
             

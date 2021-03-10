@@ -3,13 +3,7 @@
         <table class="U_table01">
             <thead>
                 <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
+                    <th v-for="(item,id) in data.header" :key="id">{{item.name}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,8 +40,7 @@
 <script>
 export default {
     props:{
-        list:Array,
-        header:Array,
+        data:Array,
         name: String,
     },
 }

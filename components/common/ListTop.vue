@@ -73,8 +73,8 @@
           </v-toolbar>
           
           <v-container>
-            <v-row>
-                <v-col style="border:1px solid pink" cols="12" md="6"  v-for=" (input, index) in config.ch.detail" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
+            <v-row style="border-left:1px solid #d9d9d9;border-top:1px solid #d9d9d9">
+                <v-col style="border:1px solid #d9d9d9;border-top:0;border-left:0" cols="12" v-for=" (input, index) in config.ch.detail" :md="input.col" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
             </v-row>
           </v-container>
 
