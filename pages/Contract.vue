@@ -29,7 +29,10 @@ export default {
   }),
   created(){
     this.$store.commit('setTitle','계약관리')
-  } 
+  },
+  mounted(){
+    this.$store.dispatch('contract/GET_LIST');
+  }
 }
 </script>
 

@@ -7,14 +7,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(id) in 10" :key="id">
-                    <td>id : {{id}}</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
+                <tr v-for="(items,id) in data.item" :key="id">
+                    <td v-for="(item,id2) in items" :key="id2">{{item}}</td>
                 </tr>
             </tbody>
         </table>
@@ -43,6 +37,11 @@ export default {
         data:Array,
         name: String,
     },
+    methods:{
+        showView(){
+            this.name;
+        }
+    }
 }
 </script>
 

@@ -28,7 +28,7 @@ export default {
         list:{
             total:0,
             header:[
-                {name:'번호',sort:true},
+                {name:'번호',sort:true,sm:true},
                 {name:'업체번호',sort:true},
                 {name:'업체명',sort:true},
                 {name:'대표전화',sort:true},
@@ -47,29 +47,41 @@ export default {
                 now:0,
                 total:10,
                 piece:5,
+                col:10
             },
             query:`name=""&subject=''`,
-            item:[
-                {},
-                {},
-                {},
-                {},
-                {},
-            ]
+            item:[{}]
         },
         info:{},
     },
     mutations: {
+        itemUpdate(state,data){
+            state.list.item = data
+        }   
 
     },
     actions: {
         GET_LIST(sto,data){
-        //리스트 불러오기
-        /*
-        .page
-        .action //search,next,prev,end,first,
-        
-        */
+            //리스트 불러오기
+            /*
+            .page
+            .action //search,next,prev,end,first,       
+            */
+            const exData = [{
+                id:'123',
+                ctr_id:'123',
+                ctr_name:'업체명',
+                ctr_call: '010-0000-0000',
+                mb_name :'이름',
+                mb_phone:'010-0000-0000',
+                mb_email:'test@mail.com',
+                md_name: 'name',
+                ctr_num: '3',
+                ctr_btn: '버튼',
+                ctr_status:'진행중',
+            }]
+            //sto.commit('itemUpdate',exData)
+
         },
         SET_PAGE(){
         //페이지 셋팅
