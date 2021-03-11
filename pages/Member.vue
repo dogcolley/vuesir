@@ -1,11 +1,11 @@
 <template>
   <v-container class="U_bg01">
    
-   <ListTop name="contract"  :config="$store.state.contract.config" />
+   <ListTop name="member" :config="$store.state.member.config" />
 
     <v-row>
       <v-col cols="12">
-        <BasicTable :data="$store.state.contract.list" name="contract" />
+        <BasicTable :data="$store.state.member.list" name="member" />
       </v-col>
     </v-row>
     
@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import ListTop from '~/components/common/ListTop.vue';
-import BasicTable from '~/components/common/BasicTable.vue';
+import ListTop from '~/components/common/ListTop.vue'
+import BasicTable from '~/components/common/BasicTable.vue'
 
 
 export default {
@@ -31,7 +31,7 @@ export default {
     this.$store.commit('setTitle','회원관리')
   },
   mounted(){
-    this.$store.dispatch('contract/GET_LIST');
+    this.$store.dispatch('member/GET_LIST')
   }
 }
 </script>

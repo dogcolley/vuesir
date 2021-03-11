@@ -31,10 +31,10 @@ export default {
                 {name:'번호',sort:true,sm:true},
                 {name:'업체번호',sort:true},
                 {name:'업체명',sort:true},
-                {name:'대표전화',sort:true},
-                {name:'담당자명',sort:true},
-                {name:'담당자 연락처',sort:true},
-                {name:'담당자 E-mail',sort:true},
+                {name:'대표전화',sort:false},
+                {name:'담당자명',sort:false},
+                {name:'담당자 연락처',sort:false},
+                {name:'담당자 E-mail',sort:false},
                 {name:'담당 마케터',sort:true},
                 {name:'계약 건수',sort:true},
                 {name:'계약 등록',sort:true},
@@ -80,8 +80,7 @@ export default {
                 ctr_btn: '버튼',
                 ctr_status:'진행중',
             }]
-            //sto.commit('itemUpdate',exData)
-
+            sto.commit('itemUpdate',exData)
         },
         SET_PAGE(){
         //페이지 셋팅

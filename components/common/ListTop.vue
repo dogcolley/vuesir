@@ -29,49 +29,55 @@
             color="white"
             flat
           >
-              <v-btn
-                icon
-                light
-                title="취소 및 닫기"
-                @click="advancedSearch = false"
-              >
-                <v-icon color="grey darken-2">
-                  mdi-arrow-left
-                </v-icon>
-              </v-btn>
-              
-              <v-btn
-                icon
-                light
-                title="검색"
-                @click="advancedSearch = false"
-              >
-                <v-icon color="grey darken-2">
-                  mdi-magnify
-                </v-icon>
-              </v-btn>
               <v-toolbar-title class="grey--text text--darken-4 U_ft_fm01">
                 검색 상세옵션	
               </v-toolbar-title>
 
               <v-spacer></v-spacer>
     
-              <v-btn
-                light
+
+            <v-btn
+              light
+              icon
+              title="리셋"
+            >
+              <v-icon
+                medium
+              >
+                mdi-refresh-circle
+              </v-icon>
+            </v-btn>
+
+            <v-btn
                 icon
-                title="리셋"
+                light
+                title="검색"
+                @click="advancedSearch = false"
               >
                 <v-icon
                   medium
                 >
-                  mdi-refresh-circle
+                  mdi-magnify
+                </v-icon>
+              </v-btn>
+
+              <v-btn
+                icon
+                light
+                title="취소 및 닫기"
+                @click="advancedSearch = false"
+              >
+                <v-icon
+                  medium
+                >
+                  mdi-close
                 </v-icon>
               </v-btn>
           </v-toolbar>
           
           <v-container>
             <v-row style="border-left:1px solid #d9d9d9;border-top:1px solid #d9d9d9">
-                <v-col style="border:1px solid #d9d9d9;border-top:0;border-left:0" cols="12" v-for=" (input, index) in config.ch.detail" :md="input.col" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
+                <v-col style="border:1px solid #d9d9d9;border-top:0;border-left:0" :cols="input.cols ? input.cols : 12" v-for=" (input, index) in config.ch.detail" :md="input.col ? input.col : 12" :key="index"><SearchOptions  :name="name" :data="input" /></v-col>
             </v-row>
           </v-container>
 
