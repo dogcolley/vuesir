@@ -8,7 +8,7 @@
     </v-list>
 
     <div>
-      {{$store.state.sms.test_sms}}
+      {{$store.state.test.test_sms}}
     </div>
 
     <v-btn  @click="text_cnt()">cnt</v-btn>
@@ -31,28 +31,27 @@ export default {
       this.$store.dispatch('MEMBER_INFO')
     },
     testRetrun:function(){
-      this.$store.dispatch('sms/test_sms_return').then(data=>{
+      this.$store.dispatch('test/test_sms_return').then(data=>{
         console.log(data)
       })
     },
     text_cnt : function(){
-      this.$store.dispatch('sms/test_sms_add_action')
+      this.$store.dispatch('test/test_sms_add_action')
     },  
     openModal : function(setModal){
       this.$store.commit('modal/addModalList',{
         type:setModal,
         width:600,
         height:300,
-        header:true,
         title:'회원정보'
       })
     }
   },
   created(){
-    this.$store.commit('setTitle','SMS관리')
+    this.$store.commit('setTitle','테스트')
   },
   mounted(){
-    console.log(this.$store.state.$menu)    
+
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <v-container class="U_bg01">
    
-   <ListTop name="member" :config="$store.state.member.config" />
+   <ListTop name="member" :config="$store.state.config.member" />
 
     <v-row>
       <v-col cols="12">

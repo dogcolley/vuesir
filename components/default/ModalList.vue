@@ -3,8 +3,7 @@
     <button class="close" @click="()=>{$store.commit('modal/deleteModalList',type.type)}" ></button>
     <div class="wrap">
         <div class="content" :style="{maxWidth:`${type.width ? type.width : '600'}px`,maxHeight:`${type.height ? type.height : '300'}px`}">
-          <MemberInfo v-if="type.type =='MemberInfo'"/>
-          {{$store.state.modalList}}
+          <MemberInfo v-if="type.type =='MemberInfo'" :type="type.type"/>
         </div>
      </div>   
   </div>
@@ -31,8 +30,6 @@ export default {
       }
     }
  }),
-
-
   created(){
     const height = this.type.height;
     const width = this.type.width;
