@@ -8,7 +8,12 @@
             </thead>
             <tbody>
                 <tr v-for="(items,id) in data.item" :key="id">
-                    <td v-for="(item,id2) in items" :key="id2">{{item}}</td>
+                    <td v-for="(item,id2) in items" :key="id2">
+                        <span v-if="id2!=='btn'">{{item}}</span> 
+                        <div v-if="id2=='btn'">
+                            <button type="button" @click="clickListBtn(btn.action,btn.id)" v-for="(btn,id3) in item" :key="id3">{{btn.text}}</button> 
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -34,12 +39,36 @@
 <script>
 export default {
     props:{
-        data:Array,
+        data:Object,
         name: String,
     },
     methods:{
-        showView(){
-            this.name;
+        clickListBtn(mode,id){
+            switch(mode){
+                case 'viewMember':
+                    this.$store.dispatch('member/GET_INFO',id)
+                    this.$store.commit('modal/addModalList',{
+                        type:'MemberInfo',
+                        width:1100,
+                        height:700,
+                        header:true,
+                        title:'회원정보',
+                        data:''
+                    })
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+            }
         }
     }
 }
