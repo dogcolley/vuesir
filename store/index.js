@@ -41,6 +41,9 @@ export default {
         }
       },
       actions: {
+        async TEST(sto){
+          console.log('test')
+        },
         async LOGIN(sto,data){
           await sto.dispatch('loading/SET_LOADING','로그인중입니다.')
           await this.$axios({

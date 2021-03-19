@@ -12,7 +12,12 @@ export default {
             sto.commit('test_sms_add')
         },
         test_sms_return(sto){
-            return 'ok';
+            return 'ok'
+        },
+        test_other_action(sto){
+            console.log(sto)
+            console.log(this)
+            this.dispatch('TEST')
         }
     }
 }
