@@ -1,5 +1,6 @@
 <template>
     <section class="modal-content">
+        
         <header class="hd U_clear">
             <h3 class="tit U_ft_sz04">제목이지</h3>
             <v-btn
@@ -35,7 +36,11 @@
                     :key="item.tab"
                     >
                     <v-card flat>
-                        <v-card-text>{{ item.content }}</v-card-text>
+                        <v-card-text>
+                            {{ item.content }}
+                            <!-- compoment -->
+                            here content
+                        </v-card-text>
                     </v-card>
                     </v-tab-item>
                 </v-tabs-items>
@@ -98,7 +103,7 @@ export default {
                 { tab: 'Ten'     , content: 'Tab 10 Content' },
             ],
         }
-    }
+    },
 
 }
 </script>
