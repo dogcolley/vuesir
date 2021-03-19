@@ -44,9 +44,6 @@ export default {
 
     .top-info{
         .profile{ background:pink;height:100%}
-        .top-con{
-            /* > * {padding-right:0;padding-top:0} */
-        }
-
+        .top-con{}
     }
 </style>
