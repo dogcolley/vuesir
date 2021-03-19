@@ -1,10 +1,14 @@
+
 export default {
     state:{
         name:'contract',
+        label:{
+            ctr_name : '업체명'
+        },
         contract:{
             ch:{
                 option:[
-                    {text:'업체명', value:'name'},
+                    {text:'업체명', value:'ctr_name'},
                     {text:'담당마켓터', value:'mb_nick'},
                     {text:'계약번호', idx:'ctr_idx' }, 
                     {text:'켐페인명', idx:'cam_idx' }, 

@@ -13,6 +13,7 @@
 
     <v-btn  @click="text_cnt()">cnt</v-btn>
     <v-btn  @click="testRetrun()">cnt global</v-btn>
+    <v-btn @click="$store.dispatch('test/test_other_action')">test</v-btn>
 
 
     <Test />
