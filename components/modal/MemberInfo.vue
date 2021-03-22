@@ -37,30 +37,69 @@
                     >
                     <v-card flat>
                         <v-card-text>
-                            {{ item.content }}
-                            <!-- compoment -->
-                            here content
+                            <div v-if="item.tab == '회원정보'">
+                                <BasicFrom name="member_basic"     action="member/SET_INFO_UPDATE" />
+                                <BasicFrom name="member_remainder" action="member/SET_INFO_UPDATE" />
+                                <BasicFrom name="member_channel"   action="member/SET_INFO_UPDATE" />
+                                <BasicFrom name="member_security"  action="member/SET_INFO_UPDATE" />
+                            </div>
+                            <div v-if="item.tab == '캠페인'">
+
+
+                            </div>
+                            <div v-if="item.tab == '서울오빠지수'">
+
+
+                            </div>
+                            <div v-if="item.tab == '이슈관리'">
+
+
+                            </div>
+                            <div v-if="item.tab == '포인트'">
+
+
+                            </div>
+                            <div v-if="item.tab == 'SMS'">
+                                
+                            </div>
                         </v-card-text>
                     </v-card>
                     </v-tab-item>
-                </v-tabs-items>
-                
-
+                </v-tabs-items>               
             </div>
-
         </article>
     </section>
 </template>
 
 <script>
 import TopInfo from '~/components/common/TopInfo.vue';
+import BasicFrom from '~/components/common/BasicFrom.vue';
 
 export default {
+    components:{
+        TopInfo,
+        BasicFrom
+    },
     props:{
         type : String
     },
-    components:{
-        TopInfo
+    created(){
+        this.top_info[0].txt = '이름 (성별) 나이'
+        this.top_info[1].txt = 'https://domain.com/testlink'
+        this.top_info[2].txt = '186'
+        this.top_info[3].txt = '우수'
+        this.top_info[4].txt = '닉네임예시입니다.'
+        this.top_info[5].txt = 'https://domain.com/testlink'
+        this.top_info[6].txt = '96'
+        this.top_info[7].txt = '180,500'
+        this.top_info[8].txt = '010-1111-2222'
+        this.top_info[9].txt = 'https://domain.com/testlink'
+        this.top_info[10].txt = '50'
+        this.top_info[11].txt = '21-01-02'
+        this.top_info[12].txt = '시도/구군'
+        this.top_info[13].txt = 'https://domain.com/testlink'
+        this.top_info[14].txt = '3%/1%'
+        this.top_info[15].txt = '21.01-03'
     },
     data(){
         return{
@@ -71,36 +110,44 @@ export default {
                 {cols:"12",md:"2"},
             ],
             top_info:[
-                {tit:'이름'       , txt:'이름 (성별) 나이'}, 
-                {tit:'블로그'     , txt:"https://domain.com/testlink"}, 
-                {tit:'신청'       , txt:'186'}, 
-                {tit:'상태 '      , txt:'우수'}, 
-                {tit:'닉네임'     , txt:'닉네임예시입니다'}, 
-                {tit:'인스타그램' , txt:'https://domain.com/testlink'}, 
-                {tit:'선정'       , txt:'96'}, 
-                {tit:'포인트'     , txt:'180,500'}, 
-                {tit:'연락처'     , txt:'010-1111-2222'}, 
-                {tit:'유투브'     , txt:'https://domain.com/testlink'}, 
-                {tit:'리뷰'       , txt:'50'}, 
-                {tit:'가입일'     , txt:'21-01-02'}, 
-                {tit:'활동지역'   , txt:'시도/구군'}, 
-                {tit:'카페'       , txt:'https://domain.com/testlink'}, 
-                {tit:'지연/취소'  , txt:'3%/1%'}, 
-                {tit:'최근접속'   , txt:'21.01-03'}, 
+                {tit:'이름'       , txt:''}, 
+                {tit:'블로그'     , txt:''}, 
+                {tit:'신청'       , txt:''}, 
+                {tit:'상태'       , txt:''}, 
+                {tit:'닉네임'     , txt:''}, 
+                {tit:'인스타그램' , txt:''}, 
+                {tit:'선정'       , txt:''}, 
+                {tit:'포인트'     , txt:''}, 
+                {tit:'연락처'     , txt:''}, 
+                {tit:'유투브'     , txt:''}, 
+                {tit:'리뷰'       , txt:''}, 
+                {tit:'가입일'     , txt:''}, 
+                {tit:'활동지역'   , txt:''}, 
+                {tit:'카페'       , txt:''}, 
+                {tit:'지연/취소'  , txt:''}, 
+                {tit:'최근접속'   , txt:''}, 
             ],
             top_img:'',
             tab: null,
             items: [
-                { tab: 'One'     , content: 'Tab 1 Content' },
-                { tab: 'Two'     , content: 'Tab 2 Content' },
-                { tab: 'Three'   , content: 'Tab 3 Content' },
-                { tab: 'Four'    , content: 'Tab 4 Content' },
-                { tab: 'Five'    , content: 'Tab 5 Content' },
-                { tab: 'Six'     , content: 'Tab 6 Content' },
-                { tab: 'Seven'   , content: 'Tab 7 Content' },
-                { tab: 'Eight'   , content: 'Tab 8 Content' },
-                { tab: 'Nine'    , content: 'Tab 9 Content' },
-                { tab: 'Ten'     , content: 'Tab 10 Content' },
+                {
+                    tab: '회원정보',
+                },
+                {
+                    tab: '캠페인',
+                },
+                {
+                    tab: '서울오빠지수',
+                },
+                {
+                    tab: '이슈관리',
+                },
+                {
+                    tab: '포인트',
+                },
+                {
+                    tab: 'SMS',
+                },
             ],
         }
     },
