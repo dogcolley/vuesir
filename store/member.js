@@ -25,13 +25,14 @@ export default {
                 piece:5,
                 col:10
             },
-            query:`name=""&subject=''`,
             item:[{}]
         },
         info:{
             member:{
+                mb_id:'',
                 mb_name:'',
                 mb_age:'',
+                mb_sex:'',
                 mb_phone:'',
                 mb_local:'',
                 mb_blog:'',
@@ -44,11 +45,12 @@ export default {
             },
         },
     },
+    getters: {
+    },
     mutations: {
         itemUpdate(state,data){
             state.list.item = data
-        }   
-
+        }
     },
     actions: {
         GET_LIST(sto,data){
@@ -82,7 +84,7 @@ export default {
         //계약정보 요청하기
 
         },
-        SET_UPDATE(sto,data){
+        SET_INFO_UPDATE(sto,data){
         //계약정보 업데이트
 
         },

@@ -16,7 +16,6 @@
 import ListTop from '~/components/common/ListTop.vue'
 import BasicTable from '~/components/common/BasicTable.vue'
 
-
 export default {
   computed:{
   },
