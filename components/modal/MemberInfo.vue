@@ -38,14 +38,19 @@
                     <v-card flat>
                         <v-card-text>
                             <div v-if="item.tab == '회원정보'">
-                                <BasicFrom name="member_basic"     action="member/SET_INFO_UPDATE" />
-                                <BasicFrom name="member_remainder" action="member/SET_INFO_UPDATE" />
-                                <BasicFrom name="member_channel"   action="member/SET_INFO_UPDATE" />
-                                <BasicFrom name="member_security"  action="member/SET_INFO_UPDATE" />
+                                <ul class="tab2">
+                                    <li v-for="(tab, id) in inc_tab1" :key="id">
+                                        <button type="button" @click="inc_tab1_on = tab" :class="inc_tab1_on ==  tab ? 'on' : '' ">
+                                            {{tab}}
+                                        </button>
+                                    </li>
+                                </ul>
+                                <BasicFrom name="member_basic" action="member/SET_INFO_UPDATE" v-if="inc_tab1_on == '기본정보'" />
+                                <BasicFrom name="member_remainder" action="member/SET_INFO_UPDATE" v-if="inc_tab1_on == '추가정보'" />
+                                <BasicFrom name="member_channel" action="member/SET_INFO_UPDATE" v-if="inc_tab1_on == '채널정보'" />
+                                <BasicFrom name="member_security" action="member/SET_INFO_UPDATE" v-if="inc_tab1_on == '비밀번호변경'" />
                             </div>
                             <div v-if="item.tab == '캠페인'">
-
-
                             </div>
                             <div v-if="item.tab == '서울오빠지수'">
 
@@ -72,13 +77,14 @@
 </template>
 
 <script>
-import TopInfo from '~/components/common/TopInfo.vue';
-import BasicFrom from '~/components/common/BasicFrom.vue';
+
+import TopInfo from '~/components/common/TopInfo.vue'
+import BasicFrom from '~/components/common/BasicFrom.vue'
 
 export default {
     components:{
         TopInfo,
-        BasicFrom
+        BasicFrom,
     },
     props:{
         type : String
@@ -130,25 +136,21 @@ export default {
             top_img:'',
             tab: null,
             items: [
-                {
-                    tab: '회원정보',
-                },
-                {
-                    tab: '캠페인',
-                },
-                {
-                    tab: '서울오빠지수',
-                },
-                {
-                    tab: '이슈관리',
-                },
-                {
-                    tab: '포인트',
-                },
-                {
-                    tab: 'SMS',
-                },
+                {tab: '회원정보'},
+                {tab: '캠페인'},
+                {tab: '서울오빠지수'},
+                {tab: '이슈관리'},
+                {tab: '포인트'},
+                {tab: 'SMS'}
             ],
+            inc_tab1:[
+                '기본정보',
+                '추가정보',
+                '채널정보',
+                '비밀번호변경',
+            ],
+            inc_tab1_on: '기본정보'
+
         }
     },
 
@@ -164,6 +166,15 @@ export default {
         .con{height: calc( 100% - 51px );padding:20px;box-sizing: border-box;overflow: auto;}
 
         .tab1{}
+        .tab2{
+            @extend .U_clear;
+            padding:0;
+            margin-bottom:20px;
+            li{padding:0;list-style:none;float:left;margin-right:7px;padding-right:7px;border-right:1px solid #d9d9d9;line-height:1}
+            li:last-child{border-right: 0}
+            button{color:#777!important}
+            .on{color:#000!important}
+        }
         .v-item-group{background:none!important;
             * {color: #000 !important}
         }
