@@ -1,14 +1,14 @@
 <template>
     <div class="top-info">
         <v-row>
-            <v-col cols="2">
+            <v-col cols="5" sm="2" >
                 <div class="profile">
                     <img src="" alt="">
                 </div>
             </v-col>
 
-            <v-col cols="10">
-                <v-row class="top-con">
+            <v-col cols="7" sm="10" >
+                <v-row class="top-con U_ft_sz06">
                     <v-col v-for="(info, id) in info_arr" :key="id" :md="cols[id < col_length ? id :  id - col_length  * Math.floor(id / col_length)].md" :cols="cols[id < col_length ? id :  id - col_length  * Math.floor(id / col_length)].cols" >
                         <div>
                             <strong v-html="info.tit"></strong>
@@ -45,5 +45,7 @@ export default {
     .top-info{
         .profile{ background:pink;height:100%}
         .top-con{}
+
+        @include xs{display:none}
     }
 </style>

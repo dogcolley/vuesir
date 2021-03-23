@@ -1,12 +1,10 @@
 <template>
     <div class="detail-wrap">
-
-
         <span class="tit"
             v-if="data.type == 'checkbox' || data.type == 'radio'  || data.type == 'select' "
         >{{data.text}}</span>
 
-        <v-text-field :label="data.text" v-model="value" @change="valueFilter" class="input01" hide-details="auto" v-if="data.type == 'text' || data.type == 'number'"></v-text-field>
+        <v-text-field :label="data.text" v-model="value" @change="valueFilter" class="input01" hide-details="auto" v-if="data.type == 'text' || data.type == 'number' || data.type == 'email' "></v-text-field>
 
         <v-radio-group v-if="data.type == 'radio'" row class="radio01" >
             <v-radio
@@ -50,8 +48,6 @@
             <option v-for="(value , id) in data.option" :key="id" :value="value"> {{data.label[id] ? data.label[id] : value}}</option>
         </select>
 
-
-        
         <v-select
             v-if="data.type == 'select-checkbox'"
             :items="data.option"
@@ -101,17 +97,32 @@
         
         <div v-if="data.type == 'select-radio'" class="sc-info01">
             <button type="button" @click="selectEmpty" class="U_ft_sz09">
-                <v-icon small v-if="this.value.length !== this.data.option.length">mdi-cursor-default-click-outline</v-icon>
+                <v-icon small v-if="this.value.length !== this.data.option.length">mdi-trash-can-outline</v-icon>
                  비우기
             </button>
         </div>
 
-
+        <div 
+            v-if="
+                (data.type == 'text' ||
+                 data.type == 'email' ||
+                 data.type == 'number') &&
+                 value
+            "
+        
+        >
+            <button type="button" @click="selectEmpty" class="U_ft_sz09">
+                <v-icon small>mdi-trash-can-outline</v-icon>
+                 비우기
+            </button>
+        </div>
 
     </div>
 </template>
 
 <script>
+//import { VueDaumPostcode } from "vue-daum-postcode"
+
 export default {
     props:{
         data:Object,
@@ -137,17 +148,25 @@ export default {
     },
     methods:{
         selectCheckboxAll(){
-            this.value = this.value.length == this.data.option.length ? []  : this.data.option ;
+            this.value = this.value.length == this.data.option.length ? []  : this.data.option
         },
         selectEmpty(){
             this.value = ''
         },
         valueFilter(){
+            let regexp
             switch(this.data.type){
                 case 'number' :
-                    const regexp = /^[0-9]*$/
+                    regexp = /^[0-9]*$/
                     if(!regexp.test(this.value)){
                         alert('숫자만 입력해주세요!')
+                        this.value = '';
+                    }
+                break;
+                case 'email' :
+                    regexp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+                    if(!regexp.test(this.value)){
+                        alert('이메일 형식에 맞춰 입력해주세요!')
                         this.value = '';
                     }
                 break;

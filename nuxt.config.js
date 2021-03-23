@@ -18,6 +18,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script:[
+      {
+        scr:`//dapi.kakao.com/v2/maps/sdk.js?appkey=5139a4715a28dcd69472527245184ae3`
+      }
     ]
   },
 
@@ -43,6 +48,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    'vue-daum-postcode/nuxt',
     ['nuxt-vuex-localstorage',{
       JSHToken : ''
     }]

@@ -5,7 +5,7 @@
 
     <v-row>
       <v-col cols="12">
-        <BasicTable :data="$store.state.member.list" name="member" />
+        <BasicTable :data="$store.state.member.list" name="member" :page="true" />
       </v-col>
     </v-row>
     

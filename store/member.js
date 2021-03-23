@@ -86,7 +86,7 @@ export default {
         },
         SET_INFO_UPDATE(sto,data){
         //계약정보 업데이트
-
+            console.log('회원정보 업데이트')
         },
         SET_LIST_UPDATE(sto,data){
         //리스트 상태변화
