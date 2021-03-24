@@ -1,6 +1,6 @@
 export default {
     state:{
-        name:'member',
+        name:'campaign',
         list:{
             total:0,
             header:[
@@ -57,7 +57,39 @@ export default {
                 case 'contract' :
                 break;
 
-                case 'campaign' :
+                case 'member' :
+                    exDataHeaer.push(
+                        {name:'번호',sort:true,xs:false,btn:false},
+                        {name:'캠페인번호',sort:true,xs:false,btn:false},
+                        {name:'카테고리',sort:true,xs:false,btn:false},
+                        {name:'켐페인명',sort:true,xs:false,btn:false},
+                        {name:'상태',sort:true,xs:false,btn:false},
+                        {name:'상태별기간',sort:true,xs:false,btn:false},
+                        {name:'모집현황',sort:true,xs:false,btn:false},
+                        {name:'리뷰',sort:true,xs:false,btn:false},
+                        {name:'회차',sort:true,xs:false,btn:false},
+                        {name:'조회',sort:true,xs:false,btn:false},
+                        {name:'담당 M/D',sort:true,xs:false,btn:false},
+                        {name:'보기',sort:true,xs:true,btn:true},
+                    );
+                     
+                    exDataBody.push({
+                        cpn_num:'번호',
+                        cpn_idx:'캠페인번호',
+                        cpn_cate:'카테고리',
+                        cpn_name:'켐페인명',
+                        cpn_state:'상태',
+                        cpn_reg:'상태별기간',
+                        cpn_recruitment:'모집현황',
+                        cpn_revice:'리뷰',
+                        cpn_round:'회차',
+                        cpn_view:'조회',
+                        cpn_maketer:'담당자',
+                        btn: [
+                            {action:'storeCertification',text:'보기',id:'123'}
+                        ],
+                    })
+
                 break;
 
                 case 'issuse' :

@@ -1,8 +1,7 @@
 <template>
   <v-container class="U_bg01">
-   
-   <ListTop name="member" :config="$store.state.config.member" />
 
+   <ListTop name="member" :config="$store.state.config.member" />
     <v-row>
       <v-col cols="12">
         <BasicTable :data="$store.state.member.list" name="member" :page="true" />
@@ -30,7 +29,7 @@ export default {
     this.$store.commit('setTitle','회원관리')
   },
   mounted(){
-    this.$store.dispatch('member/GET_LIST')
+    this.$store.dispatch('member/GET_LIST',{type:'main'})
   }
 }
 </script>

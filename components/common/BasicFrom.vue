@@ -12,7 +12,7 @@
                     <SearchOptions  name="test" :data="{type:'email',text:'E-mail'}" />
                 </v-col>
                 <v-col cols="12" sm="4">
-                    <SearchOptions  name="test" :data="{type:'text',text:'휴대번번호'}" />
+                    <SearchOptions  name="test" :data="{type:'number',text:'휴대번번호'}" />
                 </v-col>
                 <v-col cols="12" sm="4">
                     <SearchOptions  name="test" :data="$store.state.config.member.ch.detail[4]" />

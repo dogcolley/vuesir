@@ -13,7 +13,7 @@
             </v-btn>
         </header>
         <article class="con">
-            <TopInfo :info_arr="top_info" :img="top_img" :cols="top_col"/>
+            <TopInfo :info_arr="top_info" :info_arr_m="top_info_m" :img="top_img" :cols="top_col" name="member"/>
 
             <div>
                 <v-tabs
@@ -51,6 +51,14 @@
                                 <BasicFrom name="member_security" action="member/SET_INFO_UPDATE" v-if="inc_tab1_on == '비밀번호변경'" />
                             </div>
                             <div v-if="item.tab == '캠페인'">
+                                <ul class="tab2">
+                                    <li v-for="(tab, id) in inc_tab1" :key="id">
+                                        <button type="button" @click="tab2Click(inc_tab2)" :class="inc_tab2_on ==  tab ? 'on' : '' ">
+                                            {{tab}}
+                                        </button>
+                                    </li>
+                                </ul>
+                                <BasicTable :data="$store.state.campagin.list" name="compagin" :page="true" />
                             </div>
                             <div v-if="item.tab == '서울오빠지수'">
 
@@ -91,6 +99,7 @@ export default {
     },
     created(){
         this.top_info[0].txt = '이름 (성별) 나이'
+        this.top_info_m[0].txt = '이름 (성별) 나이'
         this.top_info[1].txt = 'https://domain.com/testlink'
         this.top_info[2].txt = '186'
         this.top_info[3].txt = '우수'
@@ -106,6 +115,9 @@ export default {
         this.top_info[13].txt = 'https://domain.com/testlink'
         this.top_info[14].txt = '3%/1%'
         this.top_info[15].txt = '21.01-03'
+
+        this.$store.dispatch('campagin/GET_LIST',{type:'member'})
+
     },
     data(){
         return{
@@ -114,6 +126,9 @@ export default {
                 {cols:"12",md:"5"},
                 {cols:"12",md:"2"},
                 {cols:"12",md:"2"},
+            ],
+            top_info_m:[
+                {tit:'이름'       , txt:''}, 
             ],
             top_info:[
                 {tit:'이름'       , txt:''}, 
@@ -149,10 +164,23 @@ export default {
                 '채널정보',
                 '비밀번호변경',
             ],
-            inc_tab1_on: '기본정보'
-
+            inc_tab2:[
+                '전체',
+                '신청',
+                '선정',
+                '리뷰등록',
+                '스크랩',
+            ],
+            inc_tab1_on: '기본정보',
+            inc_tab2_on: '',
         }
     },
+    methods:{
+        tab2Click(cate){
+            this.inc_tab2_on = cate
+            this.$store.dispatch('campagin/GET_LIST',{type:'member'})
+        }
+    }
 
 }
 </script>
@@ -165,23 +193,25 @@ export default {
         }
         .con{height: calc( 100% - 51px );padding:20px;box-sizing: border-box;overflow: auto;}
 
-        .tab1{}
+        .tab1{
+            .v-item-group{background:none!important;
+                * {color: #000 !important}
+            }
+        }
         .tab2{
             @extend .U_clear;
             padding:0;
             margin-bottom:20px;
-            li{padding:0;list-style:none;float:left;margin-right:7px;padding-right:7px;border-right:1px solid #d9d9d9;line-height:1}
+            li{padding:0;list-style:none;float:left;margin-right:5px;padding-right:5px;border-right:1px solid #d9d9d9;line-height:1}
             li:last-child{border-right: 0}
             button{color:#777!important}
             .on{color:#000!important}
-        }
-        .v-item-group{background:none!important;
-            * {color: #000 !important}
         }
         .v-slide-group__wrapper{border-left:1px solid #d9d9d9;margin-top:20px}
         .v-tabs-slider{background:#d9d9d9!important}
         .v-tab{border:1px solid #d9d9d9;border-left:0;background:#f9f9f9;border-bottom:0}
         .v-tab--active{background:#fff;border-bottom:0}
         .v-tabs-items{border-top:1px solid #d9d9d9}
+        .v-tabs:not(.v-tabs--vertical):not(.v-tabs--right) > .v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-slide-group--has-affixes) .v-slide-group__prev{display:none}
     }
 </style>

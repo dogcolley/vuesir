@@ -3,14 +3,23 @@
         <table class="U_table01">
             <thead>
                 <tr>
-                    <th v-for="(item,id) in data.header" :key="id">{{item.name}}</th>
+                    <th 
+                        v-for="(item,id) in data.header" 
+                        :key="id"
+                        :class="$vuetify.breakpoint.xs && !item.xs ? 'U_hd01' : '' "
+                    >
+                    {{item.name}}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(items,id) in data.item" :key="id">
-                    <td v-for="(item,id2) in items" :key="id2">
-                        <span v-if="id2!=='btn'">{{item}}</span> 
-                        <div v-if="id2=='btn'">
+                    <td 
+                        v-for="(item,name,id2) in items" 
+                        :key="id2"
+                        :class="$vuetify.breakpoint.xs && !data.header[id2].xs ? 'U_hd01' : '' "
+                    >
+                        <span v-if="name!=='btn'">{{item}}</span> 
+                        <div v-if="name=='btn'">
                             <button type="button" @click="clickListBtn(btn.action,btn.id)" v-for="(btn,id3) in item" :key="id3">{{btn.text}}</button> 
                         </div>
                     </td>
