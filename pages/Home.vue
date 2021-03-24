@@ -28,8 +28,8 @@ export default {
       return this.$store.state.test
     }
   },
-  created:function(){
-    //this.$store.dispatch('TESTING');
+  created(){
+    this.$store.commit('setTitle','마이페이지')
   },
 }
 </script>

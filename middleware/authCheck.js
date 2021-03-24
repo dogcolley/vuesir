@@ -1,5 +1,5 @@
-export default function ({app, store, redirect, route,query,req,res,localStorage}) {
-
+export default function ({app, store, redirect, route,query,req,res,localStorage,$axios}) {
+      
       if(process.server){
         let cookie =  [];
         let Token = ''
@@ -12,39 +12,20 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
         
         for(let i = 0; i < cookie.length;i++){
           let Arr = cookie[i].split('=')
-          if(Arr[0].replace(" ","") == 'Authorization'){
+          if(Arr[0].replace(" ","") == 'PHPSESSID'){
             Token = Arr[1]
           }
         }
 
-        
-
         if(route.name !== "Login")
           basePage = route.name   
-           
-        /*
-        store.app.$axios({
-          method: 'POST',
-          url: 'auth/user',
-          headers: {
-            'Authorization':Token
-          }
-        }).then(res=>{
-          console.log(res);
-          console.log('?1');
-        }).catch(err=>{
-          console.log(Token)
-          console.log(err)
-        })
-        */
-        
-          
+
         if(Token == '' && route.name !== "Login" ){
           store.state.login = false
           return redirect(`/Login${basePage ? '?basePage='+basePage : ''}`)
         }else if (Token){
           store.state.login = true
-          store.state.loginToken = Token
+          store.state.authorization = Token
           if(route.name == "Login"){
             if(basePage)
               return redirect(`/${basePage}`)
@@ -54,22 +35,21 @@ export default function ({app, store, redirect, route,query,req,res,localStorage
         }
       }
 
+      
       if(process.client){
         const cookie = document.cookie.split(';')
         let Token = ''
         for(let i = 0; i < cookie.length;i++){
           let Arr = cookie[i].split('=')
-          if(Arr[0].replace(" ","") == 'Authorization'){
+          if(Arr[0].replace(" ","") == 'PHPSESSID'){
             Token = Arr[1]
           }
         }
-        if(route.name !== "Login" ){
-          if(Token == ''){
+
+        store.dispatch('MEMBER_INFO').then( (state)=>{
+          if(route.name !== "Login" && (!state || Token == ''))
             return redirect(`/Login`)
-          }else if(Token !== store.state.loginToken ){
-            store.commit('logout')
-            return redirect(`/Login`)
-          }
-        }
+        })
+         
       }
 }

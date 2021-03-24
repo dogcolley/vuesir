@@ -3,24 +3,26 @@
         <table class="U_table01">
             <thead>
                 <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
+                    <th 
+                        v-for="(item,id) in data.header" 
+                        :key="id"
+                        :class="$vuetify.breakpoint.xs && !item.xs ? 'U_hd01' : '' "
+                    >
+                    {{item.name}}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(id) in 10" :key="id">
-                    <td>id : {{id}}</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
+                <tr v-for="(items,id) in data.item" :key="id">
+                    <td 
+                        v-for="(item,name,id2) in items" 
+                        :key="id2"
+                        :class="$vuetify.breakpoint.xs && !data.header[id2].xs ? 'U_hd01' : '' "
+                    >
+                        <span v-if="name!=='btn'">{{item}}</span> 
+                        <div v-if="name=='btn'">
+                            <button type="button" @click="clickListBtn(btn.action,btn.id)" v-for="(btn,id3) in item" :key="id3">{{btn.text}}</button> 
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -46,10 +48,38 @@
 <script>
 export default {
     props:{
-        list:Array,
-        header:Array,
+        data:Object,
         name: String,
     },
+    methods:{
+        clickListBtn(mode,id){
+            switch(mode){
+                case 'viewMember':
+                    this.$store.dispatch('member/GET_INFO',id)
+                    this.$store.commit('modal/addModalList',{
+                        type:'MemberInfo',
+                        width:1100,
+                        height:700,
+                        header:true,
+                        title:'회원정보',
+                        data:''
+                    })
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+                case '':
+                break;
+            }
+        }
+    }
 }
 </script>
 

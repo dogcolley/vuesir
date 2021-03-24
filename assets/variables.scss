@@ -56,6 +56,13 @@ $set-ht-b : 26px;
 $in-h     : 28px;
 $in-ho    : 30px;
 
+html,body{
+    min-height:100%;
+    min-width: 100%;
+    height:100%;
+    width:100%;
+}
+
 /* #3 maxin */
 @mixin xs{
     @media (max-width: 599px) {
@@ -241,8 +248,6 @@ body,html  {
         }
 
 
-
-
     }
 
     &select01{
@@ -259,9 +264,20 @@ body,html  {
         border:1px solid $color-border01;
         background-color: $color-base2;
         vertical-align: top;
+        max-width:100px;
         @extend .U_ft_sz06;
         background-size: 20px;
         background-position: calc( 100% - 5px ) 8px;
+    
+        @include xs{
+            max-width: 73px;
+        }
+    }
+
+    
+    &select03{
+        margin-top:16px;
+        width:100%;height:32px;border:1px solid #d9d9d9;
     }
 
     &input01{
@@ -334,22 +350,31 @@ body,html  {
     }
     
     &bd_cate01{
+        padding:0!important;
+        > li{padding:0!important}
+        li{list-style: none;}
         display:inline-block;vertical-align: bottom;
         @extend .U_clear, .U_ft_sz07;
         > * {float:left}
-        > dt{
+        .label{
+            display: inline-block;
+            vertical-align: top;
             padding-right:10px;
             border-right:1px solid $color-border01;
             margin-right:10px;
-            margin-left:30px;
+            margin-left:20px;
             @include xs{
                 padding-right:5px;
                 margin-right :5px;
                 margin-left  :5px;
             }
         }
-        > dt:first-child{margin-left:0}
-        > dd{ color:$color-complementary04}
+        >*:first-child{margin-left:0}
+        .value{ 
+            color:$color-complementary04;
+            display: inline-block;
+            vertical-align: top;
+        }
     }
 
     &modal{
@@ -376,9 +401,6 @@ body,html  {
         }
     }
 
-    &ch_sl01{}
-    &ch_sl01{}
-
     &tooltip{
         position:relative;display:inline-block;font-size:0.8rem;vertical-align:top;
         &_con{position: absolute;left:0;top:calc( 100% - 1px );width:188px;border:1px solid $color-border01;background:$color-base;z-index:90}
@@ -391,6 +413,7 @@ body,html  {
     &table01{width:100%;border-collapse: collapse;letter-spacing: -1px;
         th{background:$color-theme03;color:$color-font06;font-weight: 500;padding:5px}
         td{border-bottom:1px solid $color-border01;padding: 3px 7px }
+        .U_hd01{display: none;}
     }
 
     &page01{
@@ -457,6 +480,7 @@ body,html  {
 }
 */
 
+
 /*=========== defaulte Start*/
 
 .container{max-width:100% !important;min-width: 310px !important;}
@@ -467,18 +491,23 @@ body,html  {
 .v-sheet.v-app-bar.v-toolbar:not(.v-sheet--outlined){box-shadow: none;}
 
 /* gnb setting */
-.U-dep1{position:relative;width:100%}
+.U-dep1{position:relative;width:100%;font-size:0.75rem;
+    .v-list-item__action{margin-right:10px!important}
+    .v-list-item__title{font-size:0.8rem}
+}
 .U-dep2{
+   background:rgb(76 93 107);
   .btn{position:absolute;left:185px;top:0;z-index:99;}
   .v-list{display:none}
   .theme--light.v-btn.v-btn--has-bg{background: none!important;box-shadow:0 0 0}
-
+  .v-list-item__title::before{content:"";display:inline-block;vertical-align: top;width:6px;height:6px;border-left:1px solid #fff;border-bottom:1px solid #fff;margin-right:10px;margin-top:4px}
+  .v-list-item__content{padding-left:36px}
+  .v-list-item{min-height:30px!important}
 }
 .v-list-item--active+.U-dep2 , .U-dep1-on .U-dep2{
   .v-list{display:block}
   .btn{transform: rotate(180deg);}
 }
-.U-dep2 .v-list-item__content{padding-left:70px}
 
 /* hd titile */
 .logo_tit{
