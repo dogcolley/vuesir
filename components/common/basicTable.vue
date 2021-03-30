@@ -28,18 +28,16 @@
         </table>
 
         <br/>
-
+        
         <div class="text-center U_page01 U_ft_sz07">
             <ul>
-                <li><button type="button" class="start"><v-icon dense>mdi-chevron-left</v-icon><v-icon dense>mdi-chevron-left</v-icon></button></li>
-                <li><button type="button"><v-icon dense>mdi-chevron-left</v-icon></button></li>
-                <li><button type="button">1</button></li>
-                <li class="on"><button type="button">2</button></li>
-                <li><button type="button">3</button></li>
-                <li><button type="button">4</button></li>
-                <li><button type="button">5</button></li>
-                <li><button type="button"><v-icon dense>mdi-chevron-right</v-icon></button></li>
-                <li><button type="button" class="end"><v-icon dense>mdi-chevron-right</v-icon><v-icon dense>mdi-chevron-right</v-icon></button></li>
+                <li v-if="data.page.piece !== nowPart" ><button type="button" class="start" @click="clickListPage(1)"><v-icon dense>mdi-chevron-left</v-icon><v-icon dense>mdi-chevron-left</v-icon></button></li>
+                <li v-if="data.page.now > 1" ><button type="button" @click="clickListPage(data.page.now-1)"><v-icon dense>mdi-chevron-left</v-icon></button></li>
+                <li v-for="(key , id) in data.page.piece" :key='id'>
+                    <button type="button" @click="clickListPage(key + nowPart)" v-if="key + nowPart <= data.page.total" :class="key + nowPart == data.page.now ? 'on' : '' ">{{key + nowPart }}</button>
+                </li>
+                <li v-if="data.page.now < data.page.total"><button type="button" @click="clickListPage(data.page.now+1)" ><v-icon dense>mdi-chevron-right</v-icon></button></li>
+                <li v-if="data.page.now < data.page.total"><button type="button" @click="clickListPage(data.page.total)" class="end"><v-icon dense>mdi-chevron-right</v-icon><v-icon dense>mdi-chevron-right</v-icon></button></li>
             </ul>
         </div>
   </v-container>
@@ -50,6 +48,12 @@ export default {
     props:{
         data:Object,
         name: String,
+        type: String
+    },
+    computed:{
+        nowPart: function (){
+            return (Math.ceil(this.data.page.now / this.data.page.piece) - 1 ) * this.data.page.piece
+        }
     },
     methods:{
         clickListBtn(mode,id){
@@ -78,6 +82,10 @@ export default {
                 case '':
                 break;
             }
+        },
+        clickListPage(page){
+            alert(page);
+            this.$store.dispatch(`${this.name}/GET_LIST`,{type:this.type,page:page})
         }
     }
 }
