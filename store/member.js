@@ -9,10 +9,10 @@ export default {
                 
             },
             page:{
-                now:0,
-                total:10,
+                now:34,
+                total:0,
                 piece:5,
-                col:10
+                col:15
             },
             item:[{}]
         },
@@ -42,68 +42,101 @@ export default {
         },
         listHedaerUpdate(state,data){
             state.list.header = data
+        },
+        listPageUpdate(state,data){
+            state.list.page.total = data.last_page
+            state.list.page.col   = data.per_page
+            state.list.page.piece = 5
         }
     },
     actions: {
-        GET_LIST(sto,data){
-            //리스트 불러오기
-            /*
-            .page
-            .action //search,next,prev,end,first,       
-            */
+        async TEST_MENU(sto,data){
+        },
+        async GET_LIST(sto,data){
             const exDataBody = new Array;
             const exDataHeaer = new Array;
-            switch(data.type){
-                case 'contract' :
-                break;
 
-                case 'campaign' :
-                break;
-
-                case 'issuse' :
-                break;
-
-                default:
-                    exDataHeaer.push(
-                        {name:'이름',sort:true,xs:false,btn:false},
-                        {name:'아이디',sort:true,xs:false,btn:false},
-                        {name:'닉네임',sort:true,xs:true,btn:false},
-                        {name:'휴대폰',sort:true,xs:true,btn:false},
-                        {name:'대표채널',sort:true,xs:false,btn:false},
-                        {name:'활동지역',sort:true,xs:false,btn:false},
-                        {name:'신청',sort:true,xs:true,btn:false},
-                        {name:'선정',sort:true,xs:true,btn:false},
-                        {name:'이슈율',sort:true,xs:false,btn:false},
-                        {name:'가입일',sort:true,xs:false,btn:false},
-                        {name:'최근접속',sort:true,xs:false,btn:false},
-                        {name:'로그인',sort:true,xs:false,btn:false},
-                        {name:'포인트',sort:true,xs:true,btn:false},
-                        {name:'상태',sort:true,xs:true,btn:false},
-                        {name:'보기',sort:true,xs:true,btn:true},
-                    );
-                     
-                    exDataBody.push({
-                        mb_name:'이름',
-                        mb_id:'id',
-                        mb_nick:'닉네임',
-                        mb_phone:'010-1111-1111',
-                        mb_chanel:'채널',
-                        mb_local:'지역',
-                        mb_report:'1',
-                        mb_report1:'1',
-                        mb_report2:'1',
-                        mb_reg_date:'2020-02-02',
-                        mb_login_date:'2020-02-03',
-                        mb_login_state:'접속중',
-                        mb_point:'20',
-                        mb_state:'우수(?)',
-                        btn: [
-                            {action:'viewMember',text:'보기',id:'123'}
-                        ],
-                    })
+            const option = {
+                page : data.page ? data.page : sto.state.list.page.now
             }
+
+            await this.dispatch('loading/SET_LOADING','회원목록을 불러오는 중입니다.')
+            await this.$axios({
+                method: 'GET',
+                url: 'user',
+                params :option,
+                headers: {
+                    'Authorization' : sto.state.authorization,
+                    "Content-Type"  : "application/x-www-form-urlencoded",
+                    "Accept"        : "application/json",
+                }
+            }).then(res=>{
+                console.log(res)
+                const page = {
+                    last_page : res.data.users.last_page ,
+                    per_page  : res.data.users.per_page ,
+                
+                }
+                sto.commit('listPageUpdate',page)
+                switch(data.type){
+                    case 'contract' :
+                    break;
+    
+                    case 'campaign' :
+                    break;
+    
+                    case 'issuse' :
+                    break;
+    
+                    default:
+                        exDataHeaer.push(
+                            {name:'이름',sort:true,xs:false,btn:false},
+                            {name:'아이디',sort:true,xs:false,btn:false},
+                            {name:'닉네임',sort:true,xs:true,btn:false},
+                            {name:'휴대폰',sort:true,xs:true,btn:false},
+                            {name:'대표채널',sort:true,xs:false,btn:false},
+                            {name:'활동지역',sort:true,xs:false,btn:false},
+                            {name:'신청',sort:true,xs:true,btn:false},
+                            {name:'선정',sort:true,xs:true,btn:false},
+                            {name:'이슈율',sort:true,xs:false,btn:false},
+                            {name:'가입일',sort:true,xs:false,btn:false},
+                            {name:'최근접속',sort:true,xs:false,btn:false},
+                            {name:'로그인',sort:true,xs:false,btn:false},
+                            {name:'포인트',sort:true,xs:true,btn:false},
+                            {name:'상태',sort:true,xs:true,btn:false},
+                            {name:'보기',sort:true,xs:true,btn:true},
+                        );
+                        
+                        for(let i = 0; i <  res.data.users.data.length; i++){
+                            const member = res.data.users.data[i]
+                            exDataBody.push({
+                                mb_name          : member.mb_name,
+                                mb_id            : member.mb_id,
+                                mb_nick          : member.mb_nick,
+                                mb_phone         : member.mb_hp,
+                                mb_chanel        : 'null',
+                                mb_local         : 'null',
+                                mb_report        : 'null',
+                                mb_report1       : 'null',
+                                mb_report2       : 'null',
+                                mb_reg_date      : member.mb_datetime,
+                                mb_login_date    : member.mb_today_login,
+                                mb_login_state   : 'null',
+                                mb_point         : member.mb_point,
+                                mb_state         : 'null',
+                                btn: [
+                                    {action:'viewMember',text:'보기',id:member.mb_no}
+                                ],
+                            })
+                        }
+
+                }
+
+                
+            })
             sto.commit('listItemUpdate',exDataBody)
             sto.commit('listHedaerUpdate',exDataHeaer)
+            this.dispatch('loading/END_LOADING')
         },
         SET_PAGE(){
         //페이지 셋팅

@@ -4,7 +4,7 @@
    <ListTop name="member" :config="$store.state.config.member" />
     <v-row>
       <v-col cols="12">
-        <BasicTable :data="$store.state.member.list" name="member" :page="true" />
+        <BasicTable :data="$store.state.member.list" name="member" :page="true" type="main" />
       </v-col>
     </v-row>
     
@@ -27,6 +27,8 @@ export default {
   }),
   created(){
     this.$store.commit('setTitle','회원관리')
+
+
   },
   mounted(){
     this.$store.dispatch('member/GET_LIST',{type:'main'})
