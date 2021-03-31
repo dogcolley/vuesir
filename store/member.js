@@ -46,12 +46,10 @@ export default {
         listPageUpdate(state,data){
             state.list.page.total = data.last_page
             state.list.page.col   = data.per_page
-            state.list.page.piece = 5
+            state.list.page.now   = data.page
         }
     },
     actions: {
-        async TEST_MENU(sto,data){
-        },
         async GET_LIST(sto,data){
             const exDataBody = new Array;
             const exDataHeaer = new Array;
@@ -75,7 +73,7 @@ export default {
                 const page = {
                     last_page : res.data.users.last_page ,
                     per_page  : res.data.users.per_page ,
-                
+                    page : data.page ? data.page : sto.state.list.page.now
                 }
                 sto.commit('listPageUpdate',page)
                 switch(data.type){
@@ -143,7 +141,7 @@ export default {
         },
         GET_INFO(sto,data){
         //계약정보 요청하기
-
+        console.log(data);
         },
         SET_INFO_UPDATE(sto,data){
         //계약정보 업데이트
