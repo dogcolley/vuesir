@@ -64,7 +64,7 @@ export default {
             await this.dispatch('loading/SET_LOADING','회원목록을 불러오는 중입니다.')
             await this.$axios({
                 method: 'GET',
-                url: 'contract',
+                url: 'campaign',
                 params :option,
                 headers: {
                     'Authorization' : token,
