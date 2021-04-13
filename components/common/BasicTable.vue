@@ -18,9 +18,12 @@
                         :key="id2"
                         :class="$vuetify.breakpoint.xs && !data.header[id2].xs ? 'U_hd01' : '' "
                     >
-                        <span v-if="name!=='btn'">{{item}}</span> 
+                        <span v-if="name!=='btn'">
+                            <span v-html="item">
+                            </span>
+                        </span> 
                         <div v-if="name=='btn'">
-                            <button type="button" @click="clickListBtn(btn.action,btn.id)" v-for="(btn,id3) in item" :key="id3">{{btn.text}}</button> 
+                            <button type="button" class="td_btn" @click="clickListBtn(btn.action,btn.id)" v-for="(btn,id3) in item" :key="id3">{{btn.text}}</button> 
                         </div>
                     </td>
                 </tr>
@@ -59,17 +62,28 @@ export default {
         clickListBtn(mode,id){
             switch(mode){
                 case 'viewMember':
-                    this.$store.dispatch('member/GET_INFO',id)
-                    this.$store.commit('modal/addModalList',{
-                        type:'MemberInfo',
-                        width:1100,
-                        height:700,
-                        header:true,
-                        title:'회원정보',
-                        data:''
+                    this.$store.dispatch('member/GET_INFO',id).then(()=>{
+                        this.$store.commit('modal/addModalList',{
+                            type:'MemberInfo',
+                            width:1100,
+                            height:700,
+                            header:true,
+                            title:'회원정보',
+                            data:''
+                        })
                     })
                 break;
-                case '':
+                case 'viewCampaign':
+                    this.$store.dispatch('member/GET_INFO',id).then(()=>{
+                        this.$store.commit('modal/addModalList',{
+                            type:'MemberInfo',
+                            width:1100,
+                            height:700,
+                            header:true,
+                            title:'회원정보',
+                            data:''
+                        })
+                    })
                 break;
                 case '':
                 break;

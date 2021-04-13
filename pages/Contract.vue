@@ -1,7 +1,7 @@
 <template>
   <v-container class="U_bg01">
    
-   <ListTop name="contract"  :config="$store.state.contract.config" />
+   <ListTop name="contract"  :config="$store.state.config.contract" />
 
     <v-row>
       <v-col cols="12">
@@ -31,7 +31,7 @@ export default {
     this.$store.commit('setTitle','계약관리')
   },
   mounted(){
-    this.$store.dispatch('contract/GET_LIST');
+    this.$store.dispatch('contract/GET_LIST',{type:'main'})
   }
 }
 </script>

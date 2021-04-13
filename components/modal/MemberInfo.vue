@@ -1,8 +1,7 @@
 <template>
     <section class="modal-content">
-        
         <header class="hd U_clear">
-            <h3 class="tit U_ft_sz04">제목이지</h3>
+            <h3 class="tit U_ft_sz04">회원정보</h3>
             <v-btn
                 @click="()=>{$store.commit('modal/deleteModalList',type)}" 
                 icon
@@ -14,7 +13,6 @@
         </header>
         <article class="con">
             <TopInfo :info_arr="top_info" :info_arr_m="top_info_m" :img="top_img" :cols="top_col" name="member"/>
-
             <div>
                 <v-tabs
                     class="tab1"
@@ -98,23 +96,23 @@ export default {
         type : String
     },
     created(){
-        this.top_info[0].txt = '이름 (성별) 나이'
-        this.top_info_m[0].txt = '이름 (성별) 나이'
-        this.top_info[1].txt = 'https://domain.com/testlink'
-        this.top_info[2].txt = '186'
-        this.top_info[3].txt = '우수'
-        this.top_info[4].txt = '닉네임예시입니다.'
-        this.top_info[5].txt = 'https://domain.com/testlink'
-        this.top_info[6].txt = '96'
-        this.top_info[7].txt = '180,500'
-        this.top_info[8].txt = '010-1111-2222'
-        this.top_info[9].txt = 'https://domain.com/testlink'
-        this.top_info[10].txt = '50'
-        this.top_info[11].txt = '21-01-02'
+        this.top_info[0].txt = `${this.$store.state.member.info.member.mb_name} (${this.$store.state.member.info.member.mb_sex})`
+        this.top_info_m[0].txt = `${this.$store.state.member.info.member.mb_name} (${this.$store.state.member.info.member.mb_sex})`
+        this.top_info[1].txt = 'null'
+        this.top_info[2].txt = 'null'
+        this.top_info[3].txt = 'null'
+        this.top_info[4].txt = this.$store.state.member.info.member.mb_nick
+        this.top_info[5].txt = 'null'
+        this.top_info[6].txt = 'null'
+        this.top_info[7].txt = this.$store.state.member.info.member.mb_point
+        this.top_info[8].txt = this.$store.state.member.info.member.mb_phone
+        this.top_info[9].txt = 'null'
+        this.top_info[10].txt = 'null'
+        this.top_info[11].txt = String(this.$store.state.member.info.member.mb_datetime).substring(0,10)
         this.top_info[12].txt = '시도/구군'
         this.top_info[13].txt = 'https://domain.com/testlink'
         this.top_info[14].txt = '3%/1%'
-        this.top_info[15].txt = '21.01-03'
+        this.top_info[15].txt = String(this.$store.state.member.info.member.mb_today_login).substring(0,10)
 
         this.$store.dispatch('campagin/GET_LIST',{type:'member'})
 

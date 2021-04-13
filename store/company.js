@@ -1,6 +1,6 @@
 export default {
     state:{
-        name:'contract',
+        name:'company',
         list:{
             total:0,
             header:[
@@ -16,7 +16,25 @@ export default {
             },
             item:[{}]
         },
-        info:{},
+        info:{
+            company:{
+                mb_id:'',
+                mb_name:'',
+                mb_age:'',
+                mb_sex:'',
+                mb_phone:'',
+                mb_local:'',
+                mb_blog:'',
+                mb_cafe:'',
+                mb_yotube:'',
+                mb_insta:'',
+                mb_choise:'',
+                mb_apply:'',
+                mb_reivew:'',
+            },
+        },
+    },
+    getters: {
     },
     mutations: {
         listItemUpdate(state,data){
@@ -46,7 +64,7 @@ export default {
             await this.dispatch('loading/SET_LOADING','회원목록을 불러오는 중입니다.')
             await this.$axios({
                 method: 'GET',
-                url: 'contract',
+                url: 'company',
                 params :option,
                 headers: {
                     'Authorization' : token,
@@ -56,8 +74,8 @@ export default {
             }).then(res=>{
                 console.log(res)
                 const page = {
-                    last_page : res.data.contracts.last_page ,
-                    per_page  : res.data.contracts.per_page ,
+                    last_page : res.data.companies.last_page ,
+                    per_page  : res.data.companies.per_page ,
                     page : data.page ? data.page : sto.state.list.page.now
                 }
                 sto.commit('listPageUpdate',page)
@@ -73,35 +91,33 @@ export default {
     
                     default:
                         exDataHeaer.push(
-                            {name:'업체명',sort:true,xs:false,btn:false},
-                            {name:'계약상품',sort:true,xs:false,btn:false},
-                            {name:'계약번호',sort:true,xs:false,btn:false},
-                            {name:'회원명',sort:true,xs:false,btn:false},
-                            {name:'가격',sort:true,xs:false,btn:false},
-                            {name:'결제상태',sort:true,xs:false,btn:false},
+                            {name:'업체번호',sort:true,xs:false,btn:false},
+                            {name:'업체',sort:true,xs:true,btn:false},
                             {name:'담당자',sort:true,xs:false,btn:false},
-                            {name:'소속',sort:true,xs:false,btn:false},
-                            {name:'모집인원',sort:true,xs:false,btn:false},
-                            {name:'캠페인수',sort:true,xs:false,btn:false},
-                            {name:'이슈관리',sort:true,xs:false,btn:false},
+                            {name:'계약자',sort:true,xs:false,btn:false},
+                            {name:'건수	계약',sort:true,xs:false,btn:false},
+                            {name:'계약상태',sort:true,xs:false,btn:false},
                             {name:'관리',sort:true,xs:false,btn:false},
                         );
-                        for(let i = 0; i <  res.data.contracts.data.length; i++){
-                            const contract = res.data.contracts.data[i]
+                        for(let i = 0; i <  res.data.companies.data.length; i++){
+                            const companies = res.data.companies.data[i]
                             exDataBody.push({
-                                com_name: 'null',
-                                ctr_prd_name: contract.ctr_prd_name,
-                                ctr_idx: contract.ctr_idx,
-                                mb_id: contract.mb_id,
-                                ctr_price: contract.ctr_price,
-                                ctr_pay_status: contract.ctr_pay_status,
-                                mb_id_saler: contract.mb_id_saler,
-                                trm_group: 'null',
-                                ctr_num: 'null',
-                                cam_cnt: 'null',
-                                ius_cnt: 'null/null',
+                                com_idx: companies.com_idx,
+                                com_name: `
+                                <strong>상호명:</strong> ${companies.com_name} <br/>
+                                <strong>대표번호:</strong> ${companies.com_hp}
+                                `,
+                                com_maketer            : `
+                                    <strong>담당자명:</strong> 담당자명 <br/>
+                                    <strong>연락처:</strong> 010-0000-0000 <br/>
+                                    <strong>E-mail:</strong> test@mail.com <br/>
+                                `,
+                                com_md :'null',
+                                cam_md :'null',
+                                cam_status :'null',
                                 btn: [
-                                    {action:'viewcompany',text:'계약관리',id:contract.com_idx},
+                                    {action:'viewcompany',text:'계약추가',id:companies.com_idx},
+                                    {action:'viewcompany',text:'업체수정',id:companies.com_idx},
                                 ],
                             })
                         }

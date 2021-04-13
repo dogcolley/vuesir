@@ -1,11 +1,11 @@
 <template>
   <v-container class="U_bg01">
    
-   <ListTop name="contract"  :config="$store.state.contract.config" />
+   <ListTop name="campagin"  :config="$store.state.config.campagin" />
 
     <v-row>
       <v-col cols="12">
-        <BasicTable :data="$store.state.contract.list" name="contract" />
+        <BasicTable :data="$store.state.campagin.list" name="campagin" />
       </v-col>
     </v-row>
     
@@ -30,8 +30,8 @@ export default {
   created(){
     this.$store.commit('setTitle','켐페인관리')
   },
-  mounted(){
-    this.$store.dispatch('contract/GET_LIST');
+  async mounted(){
+    this.$store.dispatch('campagin/GET_LIST',{type:'main'})
   }
 }
 </script>

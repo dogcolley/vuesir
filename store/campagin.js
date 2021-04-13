@@ -9,15 +9,15 @@ export default {
                 
             },
             page:{
-                now:0,
-                total:10,
+                now:1,
+                total:0,
                 piece:5,
-                col:10
+                col:15
             },
             item:[{}]
         },
         info:{
-            member:{
+            campaign:{
                 mb_id:'',
                 mb_name:'',
                 mb_age:'',
@@ -42,100 +42,108 @@ export default {
         },
         listHedaerUpdate(state,data){
             state.list.header = data
+        },
+        listPageUpdate(state,data){
+            state.list.page.total = data.last_page
+            state.list.page.col   = data.per_page
+            state.list.page.now   = data.page
+        },
+        viewInfoUpdate(state,data){
+            state.info.campaign = data;
         }
     },
     actions: {
-        GET_LIST(sto,data){
-            //리스트 불러오기
-            /*
-            .page
-            .action //search,next,prev,end,first,       
-            */
-            const exDataBody = new Array;
-            const exDataHeaer = new Array;
-            switch(data.type){
-                case 'contract' :
-                break;
-
-                case 'member' :
-                    exDataHeaer.push(
-                        {name:'번호',sort:true,xs:false,btn:false},
-                        {name:'캠페인번호',sort:true,xs:false,btn:false},
-                        {name:'카테고리',sort:true,xs:false,btn:false},
-                        {name:'켐페인명',sort:true,xs:false,btn:false},
-                        {name:'상태',sort:true,xs:false,btn:false},
-                        {name:'상태별기간',sort:true,xs:false,btn:false},
-                        {name:'모집현황',sort:true,xs:false,btn:false},
-                        {name:'리뷰',sort:true,xs:false,btn:false},
-                        {name:'회차',sort:true,xs:false,btn:false},
-                        {name:'조회',sort:true,xs:false,btn:false},
-                        {name:'담당 M/D',sort:true,xs:false,btn:false},
-                        {name:'보기',sort:true,xs:true,btn:true},
-                    );
-                     
-                    exDataBody.push({
-                        cpn_num:'번호',
-                        cpn_idx:'캠페인번호',
-                        cpn_cate:'카테고리',
-                        cpn_name:'켐페인명',
-                        cpn_state:'상태',
-                        cpn_reg:'상태별기간',
-                        cpn_recruitment:'모집현황',
-                        cpn_revice:'리뷰',
-                        cpn_round:'회차',
-                        cpn_view:'조회',
-                        cpn_maketer:'담당자',
-                        btn: [
-                            {action:'storeCertification',text:'보기',id:'123'}
-                        ],
-                    })
-
-                break;
-
-                case 'issuse' :
-                break;
-
-                default:
-                    exDataHeaer.push(
-                        {name:'이름',sort:true,xs:false,btn:false},
-                        {name:'아이디',sort:true,xs:false,btn:false},
-                        {name:'닉네임',sort:true,xs:true,btn:false},
-                        {name:'휴대폰',sort:true,xs:true,btn:false},
-                        {name:'대표채널',sort:true,xs:false,btn:false},
-                        {name:'활동지역',sort:true,xs:false,btn:false},
-                        {name:'신청',sort:true,xs:true,btn:false},
-                        {name:'선정',sort:true,xs:true,btn:false},
-                        {name:'이슈율',sort:true,xs:false,btn:false},
-                        {name:'가입일',sort:true,xs:false,btn:false},
-                        {name:'최근접속',sort:true,xs:false,btn:false},
-                        {name:'로그인',sort:true,xs:false,btn:false},
-                        {name:'포인트',sort:true,xs:true,btn:false},
-                        {name:'상태',sort:true,xs:true,btn:false},
-                        {name:'보기',sort:true,xs:true,btn:true},
-                    );
-                     
-                    exDataBody.push({
-                        mb_name:'이름',
-                        mb_id:'id',
-                        mb_nick:'닉네임',
-                        mb_phone:'010-1111-1111',
-                        mb_chanel:'채널',
-                        mb_local:'지역',
-                        mb_report:'1',
-                        mb_report1:'1',
-                        mb_report2:'1',
-                        mb_reg_date:'2020-02-02',
-                        mb_login_date:'2020-02-03',
-                        mb_login_state:'접속중',
-                        mb_point:'20',
-                        mb_state:'우수(?)',
-                        btn: [
-                            {action:'viewMember',text:'보기',id:'123'}
-                        ],
-                    })
+        async GET_LIST(sto,data){
+            const token = sto.rootState.authorization
+            const exDataBody = new Array
+            const exDataHeaer = new Array
+            const option = {
+                page : data.page ? data.page : sto.state.list.page.now
             }
+
+            await this.dispatch('loading/SET_LOADING','회원목록을 불러오는 중입니다.')
+            await this.$axios({
+                method: 'GET',
+                url: 'contract',
+                params :option,
+                headers: {
+                    'Authorization' : token,
+                    "Content-Type"  : "application/x-www-form-urlencoded",
+                    "Accept"        : "application/json",
+                }
+            }).then(res=>{
+                //console.log(res)
+                const page = {
+                    last_page : res.data.campaign.last_page ,
+                    per_page  : res.data.campaign.per_page ,
+                    page : data.page ? data.page : sto.state.list.page.now
+                }
+                sto.commit('listPageUpdate',page)
+                switch(data.type){
+                    case 'contract' :
+                    break;
+    
+                    case 'campaign' :
+                    break;
+    
+                    case 'issuse' :
+                    break;
+    
+                    default:
+                        exDataHeaer.push(
+                            {name:'이미지',sort:false,xs:false,btn:false},
+                            {name:'캠페인',sort:true,xs:false,btn:false},
+                            {name:'접수',sort:true,xs:true,btn:false},
+                            {name:'신청/선정',sort:true,xs:true,btn:false},
+                            {name:'리뷰',sort:true,xs:false,btn:false},
+                            {name:'관리',sort:true,xs:false,btn:false},
+                        );
+                         
+                        for(let i = 0; i <  res.data.campaign.data.length; i++){
+                            const campaign = res.data.campaign.data[i]
+                            exDataBody.push({
+                                cam_img          : `<div>이미지</div>`,
+                                cam_name            : `
+                                    ${campaign.cam_name} <br/>
+                                    <캠페인 종류 아이콘> <br/>
+                                    ${campaign.mb_id_saler} / c${campaign.cam_idx} / ${campaign.com_idx} <br/>
+                                    <strong>상품명:</strong>상품명(결재상태) - 진행회차/총회차
+                                `,
+                                
+                                cam_reg_dt          : `
+                                    <strong>업체:</strong> ${campaign.mb_id_company} <br/>
+                                    <strong>담당자:</strong> ${campaign.mb_id_saler} <br/>
+                                    <strong>소속</strong> 소속그룹/팀 <br/>
+                                    <strong>등록일</strong> ${campaign.cam_reg_dt} <br/>
+                                    <strong>접수일</strong> ${campaign.cam_info_reg_dt} 
+                                `,
+                                cam_info         : `
+                                    <strong>모집기간:</strong><br/>
+                                    <strong>모집인원:</strong><br/>
+                                    <strong>가선정:</strong><br/>
+                                    <strong>선정일자:</strong><br/>
+                                    <strong>발표일:</strong><br/>
+                                    <strong>발표상태:</strong><br/>
+                                `,
+                                cam_review         : `
+                                    <strong>기간:</strong><br/>
+                                    <strong>상태:</strong><br/>
+                                    <strong>리뷰수:</strong><br/>
+                                `,
+                                btn: [
+                                    {action:'viewCampaign',text:'이슈관리',id:campaign.cam_idx},
+                                    {action:'viewCampaign',text:'일정/회차',id:campaign.cam_idx},
+                                    {action:'viewCampaign',text:'리포트',id:campaign.cam_idx},
+                                    {action:'viewCampaign',text:'리뷰접속통계',id:campaign.cam_idx}
+                                ],
+                            })
+                        }
+
+                }
+            })
             sto.commit('listItemUpdate',exDataBody)
             sto.commit('listHedaerUpdate',exDataHeaer)
+            this.dispatch('loading/END_LOADING')
         },
         SET_PAGE(){
         //페이지 셋팅
