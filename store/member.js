@@ -9,7 +9,7 @@ export default {
                 
             },
             page:{
-                now:34,
+                now:1,
                 total:0,
                 piece:5,
                 col:15
@@ -18,19 +18,6 @@ export default {
         },
         info:{
             member:{
-                mb_id:'',
-                mb_name:'',
-                mb_age:'',
-                mb_sex:'',
-                mb_phone:'',
-                mb_local:'',
-                mb_blog:'',
-                mb_cafe:'',
-                mb_yotube:'',
-                mb_insta:'',
-                mb_choise:'',
-                mb_apply:'',
-                mb_reivew:'',
             },
         },
     },
@@ -47,13 +34,16 @@ export default {
             state.list.page.total = data.last_page
             state.list.page.col   = data.per_page
             state.list.page.now   = data.page
+        },
+        viewInfoUpdate(state,data){
+            state.info.member = data;
         }
     },
     actions: {
         async GET_LIST(sto,data){
-            const exDataBody = new Array;
-            const exDataHeaer = new Array;
-
+            const token = sto.rootState.authorization
+            const exDataBody = new Array
+            const exDataHeaer = new Array
             const option = {
                 page : data.page ? data.page : sto.state.list.page.now
             }
@@ -64,12 +54,11 @@ export default {
                 url: 'user',
                 params :option,
                 headers: {
-                    'Authorization' : sto.state.authorization,
+                    'Authorization' : token,
                     "Content-Type"  : "application/x-www-form-urlencoded",
                     "Accept"        : "application/json",
                 }
             }).then(res=>{
-                console.log(res)
                 const page = {
                     last_page : res.data.users.last_page ,
                     per_page  : res.data.users.per_page ,
@@ -129,8 +118,6 @@ export default {
                         }
 
                 }
-
-                
             })
             sto.commit('listItemUpdate',exDataBody)
             sto.commit('listHedaerUpdate',exDataHeaer)
@@ -139,9 +126,28 @@ export default {
         SET_PAGE(){
         //페이지 셋팅
         },
-        GET_INFO(sto,data){
-        //계약정보 요청하기
-        console.log(data);
+        async GET_INFO(sto,data){
+            //계약정보 요청하기
+            console.log(data);
+            const token = sto.rootState.authorization
+            const option = {
+                //page : data.page ? data.page : sto.state.list.page.now
+            }
+
+            await this.dispatch('loading/SET_LOADING','회원목록을 불러오는 중입니다.')
+            await this.$axios({
+                method: 'GET',
+                url: `user/${data}`,
+                //params :option,
+                headers: {
+                    'Authorization' : token,
+                    "Content-Type"  : "application/x-www-form-urlencoded",
+                    "Accept"        : "application/json",
+                }
+            }).then(res=>{
+                sto.commit('viewInfoUpdate',res.data.user)
+                this.dispatch('loading/END_LOADING')
+            })
         },
         SET_INFO_UPDATE(sto,data){
         //계약정보 업데이트

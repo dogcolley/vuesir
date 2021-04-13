@@ -83,9 +83,9 @@ export default {
             console.log(err)
           })
         },
-      
         async MEMBER_INFO(sto){
-          let state = false;
+          let state = false
+          
           await this.$axios({
             method: 'POST',
             url: 'auth/user',
@@ -97,14 +97,15 @@ export default {
           }).then(res=>{
             if(res.data.isAuthenticated){
               sto.commit('memberInfo',res.data.user)
-              state = true;
+              state = true
             }
           }).catch(err=>{
             console.log(err)
           })
 
-
-          return state;
+          state = true
+          
+          return state
         },
         
         async SET_COOKIE(sto,data){    
@@ -138,7 +139,7 @@ export default {
           }
           
           return ""
-        }
+        },
 
       },
       modules: {

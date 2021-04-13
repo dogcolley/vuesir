@@ -89,7 +89,6 @@ export default {
       if(this.$route.name !=='Login' && !state)
         this.$store.$router.go('/Login')
     })
- 
  }
 }
 </script>

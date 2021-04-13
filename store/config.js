@@ -303,6 +303,51 @@ export default {
                 detail:[
                     {col:6,text:'등록일자시작',type:'date',value:'',name:'ctr_reg_dt_start',option:[]},
                     {col:6,text:'등록일자종료',type:'date',value:'',name:'ctr_reg_dt_end',option:[]},
+                ]
+            },
+            cate:[
+                {text:'전체',num:'9999',query:'all'},
+                {text:'대기',num:'8888',query:'all'},
+                {text:'완료',num:'7777',query:'all'},
+                {text:'취소',num:'6666',query:'all'},
+            ],
+        },
+        company:{
+            ch:{
+                option:[
+                    {text:'업체명', value:'ctr_name'},
+                    {text:'담당마켓터', value:'mb_nick'},
+                    {text:'계약번호', idx:'ctr_idx' }, 
+                    {text:'대표전화', idx:'cam_idx' }, 
+                ],
+                keyWord: '',
+                detail:[
+                    {col:6,text:'등록일자시작',type:'date',value:'',name:'ctr_reg_dt_start',option:[]},
+                    {col:6,text:'등록일자종료',type:'date',value:'',name:'ctr_reg_dt_end',option:[]},
+                    {col:6,text:'test input ',type:'text',value:'',name:'ctr_test_text',option:[]},
+                    {col:6,text:'test radio ',type:'radio',value:'',name:'ctr_test_radio',option:['1','2','3','4'],label:['라벨1','라벨2','라벨3','라벨4']},
+                    {col:12,text:'test checkbox ',type:'checkbox',value:'',name:'ctr_test_radio',option:['1','2','3','4'],label:['라벨1','라벨2','라벨3','라벨4']},
+                ]
+            },
+            cate:[
+                {text:'전체',num:'9999',query:'all'},
+                {text:'대기',num:'8888',query:'all'},
+                {text:'완료',num:'7777',query:'all'},
+                {text:'취소',num:'6666',query:'all'},
+            ],
+        },
+        campagin:{
+            ch:{
+                option:[
+                    {text:'업체명', value:'ctr_name'},
+                    {text:'담당마켓터', value:'mb_nick'},
+                    {text:'계약번호', idx:'ctr_idx' }, 
+                    {text:'켐페인명', idx:'cam_idx' }, 
+                ],
+                keyWord: '',
+                detail:[
+                    {col:6,text:'등록일자시작',type:'date',value:'',name:'ctr_reg_dt_start',option:[]},
+                    {col:6,text:'등록일자종료',type:'date',value:'',name:'ctr_reg_dt_end',option:[]},
                     {col:6,text:'test input ',type:'text',value:'',name:'ctr_test_text',option:[]},
                     {col:6,text:'test radio ',type:'radio',value:'',name:'ctr_test_radio',option:['1','2','3','4'],label:['라벨1','라벨2','라벨3','라벨4']},
                     {col:12,text:'test checkbox ',type:'checkbox',value:'',name:'ctr_test_radio',option:['1','2','3','4'],label:['라벨1','라벨2','라벨3','라벨4']},
@@ -351,7 +396,7 @@ export default {
                     {cols:6,col:3,text:'활동지역',type:'select-radio',value:'',name:'',option: [] },
                     {cols:6,col:3,text:'채널경력',type:'select-radio',value:'',name:'',option: [] },
                     {cols:6,col:3,text:'활동기간',type:'select-radio',value:'',name:'',option: [] },
-                    {cols:6,col:3,text:'리뷰수',type:'select-radio',value:'',name:'',option: [] },
+                    {cols:6,col:3,text:'리뷰수',type:'select-r-adio',value:'',name:'',option: [] },
                     {cols:6,col:3,text:'서울오빠지수',type:'select-checkbox',value:'',name:'',option: [] },
                     {cols:6,col:3,text:'회원상태',type:'select-checkbox',value:'',name:'',option: [] },
                     {cols:6,col:3,text:'관심사',type:'select-checkbox',value:'',name:'',option: [] },
