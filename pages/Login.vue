@@ -75,6 +75,7 @@ export default {
     },
     mounted(){
         this.$store.commit("querySet")
+        this.$store.commit("logout")
     },
     methods:{
          loginFN : async function () {
