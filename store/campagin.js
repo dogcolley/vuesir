@@ -85,7 +85,39 @@ export default {
     
                     case 'campaign' :
                     break;
-    
+                    case 'member' :
+                        exDataHeaer.push(
+                            {name:'캠페인번호',sort:false,xs:false,btn:false},
+                            {name:'카테고리',sort:true,xs:false,btn:false},
+                            {name:'캠페인명',sort:true,xs:true,btn:false},
+                            {name:'상태별기간',sort:true,xs:true,btn:false},
+                            {name:'모집현황',sort:true,xs:false,btn:false},
+                            {name:'리뷰',sort:true,xs:false,btn:false},
+                            {name:'회차',sort:true,xs:false,btn:false},
+                            {name:'조회',sort:true,xs:false,btn:false},
+                            {name:'담당MD',sort:true,xs:false,btn:false},
+                            {name:'매장인증',sort:true,xs:false,btn:false},
+                        );
+                         
+                        for(let i = 0; i <  res.data.campaign.data.length; i++){
+                            const campaign = res.data.campaign.data[i]
+                            exDataBody.push({
+                                cam_idx  : `${campaign.cam_idx}`,
+                                cam_cate : `null`,
+                                cam_name : `${campaign.cam_name} `,
+                                cam_rage : ` null ~ null`,
+                                cam_modzip : `[모집]null [신청]null`,
+                                cam_review : `null`,
+                                cam_round : `null`,
+                                cam_view : `null`,
+                                cam_md : `null`,
+                                btn: [
+                                    {action:'viewCampaign',text:'매장인증',id:campaign.cam_idx},
+                                ],
+                            })
+                        }
+
+                    break;
                     case 'issuse' :
                     break;
     

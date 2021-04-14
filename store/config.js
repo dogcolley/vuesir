@@ -286,7 +286,6 @@ export default {
                 '음성군',
                 '단양군'
             ]
-
         },
         label:{
             ctr_name : '업체명'
@@ -363,18 +362,18 @@ export default {
         member:{
             ch:{
                 option:[
-                    {text:'닉네임', value:''},
-                    {text:'아이디', value:''},
-                    {text:'이메일', value:''},
-                    {text:'블로그주소', value:''},
-                    {text:'연락처', value:''},
-                    {text:'추천인아이디', value:''},
-                    {text:'제휴아이디', value:''},
-                    {text:'페이스북URL', value:''},
-                    {text:'인스타그램URL', value:''},
-                    {text:'유튜브URL', value:''},
-                    {text:'추가채널URL', value:''},
-                    {text:'카페URL', value:''},
+                    {text:'닉네임', value:'',name:'mb_nick'},
+                    {text:'아이디', value:'',name:'mb_id'},
+                    {text:'이메일', value:'',name:'mb_email'},
+                    {text:'블로그주소', value:'',name:'mb_blog'},
+                    {text:'연락처', value:'',name:'mb_phone'},
+                    {text:'추천인아이디', value:'',name:''},
+                    {text:'제휴아이디', value:'',name:''},
+                    {text:'페이스북URL', value:'',name:''},
+                    {text:'인스타그램URL', value:'',name:''},
+                    {text:'유튜브URL', value:'',name:''},
+                    {text:'추가채널URL', value:'',name:''},
+                    {text:'카페URL', value:'',name:''},
                 ],
                 keyWord: '',
                 detail: [

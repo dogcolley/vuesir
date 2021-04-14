@@ -6,13 +6,13 @@
         >
             <v-row class="U-from-inpput" v-if="name == 'member_basic'">
                 <v-col cols="12" sm="4">
-                    <SearchOptions  name="test" :data="{type:'text',text:'이름'}" />
+                    <SearchOptions  name="mb_name" :data="{type:'text',text:'이름'}" />
                 </v-col>
                 <v-col cols="12" sm="4">
-                    <SearchOptions  name="test" :data="{type:'email',text:'E-mail'}" />
+                    <SearchOptions  name="mb_mail" :data="{type:'email',text:'E-mail'}" />
                 </v-col>
                 <v-col cols="12" sm="4">
-                    <SearchOptions  name="test" :data="{type:'number',text:'휴대번번호'}" />
+                    <SearchOptions  name="mb_phone" :data="{type:'number',text:'휴대번번호'}" />
                 </v-col>
                 <v-col cols="12" sm="4">
                     <SearchOptions  name="test" :data="$store.state.config.member.ch.detail[4]" />

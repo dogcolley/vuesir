@@ -56,7 +56,7 @@
                                         </button>
                                     </li>
                                 </ul>
-                                <BasicTable :data="$store.state.campagin.list" name="compagin" :page="true" />
+                                <BasicTable :data="$store.state.campagin.list" type="member" name="campagin" :page="true" />
                             </div>
                             <div v-if="item.tab == '서울오빠지수'">
 

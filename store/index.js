@@ -63,6 +63,7 @@ export default {
             }
           }).catch(err=>{
             console.log(err)
+            console.log('err')
           })
         },
         async LOGOUT(sto){
@@ -85,7 +86,6 @@ export default {
         },
         async MEMBER_INFO(sto){
           let state = false
-          
           await this.$axios({
             method: 'POST',
             url: 'auth/user',
@@ -95,12 +95,14 @@ export default {
               "Accept"        : "application/json",
             }
           }).then(res=>{
+            console.log('err')
             if(res.data.isAuthenticated){
               sto.commit('memberInfo',res.data.user)
               state = true
             }
           }).catch(err=>{
-            console.log(err)
+            sto.commit('logout')
+            console.log(sto);
           })
 
           state = true
